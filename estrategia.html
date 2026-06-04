@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mariah — Mapa de Estratégia & Questionário</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#894d51">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vinho:#894d51; --vinho-d:#5e3236; --rose:#c5a791; --nude:#edc3ad;
+  --areia:#f6e0ce; --marfim:#faeee7; --ouro:#caa043; --cobre:#c8914f;
+  --tinta:#3b2b27; --tinta-soft:#6b5750;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,sans-serif;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0; font-family:var(--sans); color:var(--tinta); font-weight:300; line-height:1.6;
+  background:radial-gradient(60% 50% at 15% 0%, #fff 0%, rgba(255,255,255,0) 60%),
+    radial-gradient(50% 40% at 95% 8%, #fbe9da 0%, rgba(251,233,218,0) 60%), var(--marfim);
+  background-attachment:fixed; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+.wrap{max-width:880px; margin:0 auto; padding:0 24px}
+h1,h2,h3{font-family:var(--serif); font-weight:400; margin:0; letter-spacing:.01em}
+.eyebrow{font-family:var(--sans); letter-spacing:.4em; text-transform:uppercase; font-size:11px; color:var(--cobre)}
+.star{color:var(--ouro)}
+header.hero{text-align:center; padding:54px 24px 30px}
+header .logo{max-width:300px; width:62%}
+header .tagline{font-family:var(--serif); font-style:italic; font-size:clamp(18px,3vw,24px); color:var(--vinho); margin-top:6px}
+header .sub{color:var(--tinta-soft); font-size:14px; margin-top:14px; max-width:46ch; margin-left:auto; margin-right:auto}
+.divider{display:flex; align-items:center; justify-content:center; gap:16px; color:var(--ouro); padding:10px 0}
+.divider::before,.divider::after{content:""; height:1px; width:80px; background:linear-gradient(90deg,transparent,var(--ouro))}
+.divider::after{background:linear-gradient(90deg,var(--ouro),transparent)}
+section{padding:34px 0}
+.card{background:rgba(255,255,255,.6); border:1px solid rgba(202,160,67,.25); border-radius:16px; padding:26px 24px; margin:16px 0; backdrop-filter:blur(3px)}
+.card h2{font-size:clamp(22px,3.4vw,30px); color:var(--vinho)}
+.card h2 .n{font-family:var(--serif); color:var(--ouro); margin-right:10px}
+.card p{color:var(--tinta-soft); margin:.6em 0 0}
+.card p b{color:var(--tinta)}
+.quote{font-family:var(--serif); font-style:italic; font-size:clamp(18px,2.6vw,23px); color:var(--vinho); line-height:1.4}
+.tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px}
+@media(max-width:680px){.tiers{grid-template-columns:1fr}}
+.tier{border:1px solid rgba(202,160,67,.3); border-radius:12px; padding:16px; background:#fff}
+.tier b{font-family:var(--serif); font-size:21px; color:var(--vinho); display:block}
+.tier .role{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--cobre); margin:4px 0 8px}
+.tier span{font-size:13px; color:var(--tinta-soft)}
+.persona{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.persona span{border:1px solid var(--rose); color:var(--vinho); border-radius:999px; padding:5px 13px; font-size:12px}
+.list{margin:.6em 0 0; padding-left:1.1em; color:var(--tinta-soft)}
+.list li{margin:.3em 0}
+.budget{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px; text-align:center}
+@media(max-width:560px){.budget{grid-template-columns:1fr}}
+.budget div{background:#fff; border:1px solid rgba(202,160,67,.25); border-radius:12px; padding:14px}
+.budget b{font-family:var(--serif); font-size:24px; color:var(--vinho); display:block}
+.budget small{font-size:12px; color:var(--tinta-soft)}
+
+/* questionário */
+.form-intro{text-align:center; max-width:54ch; margin:0 auto}
+.q{background:rgba(255,255,255,.7); border:1px solid rgba(202,160,67,.25); border-radius:14px; padding:20px 22px; margin:14px 0}
+.q .ql{font-family:var(--serif); font-size:19px; color:var(--vinho); display:block; margin-bottom:12px}
+.q label.opt{display:flex; align-items:flex-start; gap:10px; padding:8px 0; font-size:15px; color:var(--tinta); cursor:pointer}
+.q input[type=radio],.q input[type=checkbox]{margin-top:4px; accent-color:var(--vinho); width:17px; height:17px; flex:0 0 auto}
+.q input[type=text], .q textarea{width:100%; border:1px solid var(--rose); border-radius:10px; padding:11px 13px; font-family:var(--sans); font-size:15px; color:var(--tinta); background:#fff; resize:vertical}
+.q input[type=text]:focus, .q textarea:focus{outline:none; border-color:var(--ouro)}
+.actions{text-align:center; margin:26px 0 8px}
+.btn{display:inline-block; background:var(--vinho); color:#fff; border:none; cursor:pointer; padding:15px 34px; border-radius:999px; font-family:var(--sans); font-size:15px; letter-spacing:.03em; box-shadow:0 12px 30px rgba(94,50,54,.25); transition:.25s}
+.btn:hover{background:var(--vinho-d); transform:translateY(-2px)}
+#resultado{width:100%; min-height:120px; margin-top:18px; display:none; border:1px dashed var(--ouro); border-radius:12px; padding:14px; font-family:var(--sans); font-size:13px; background:#fff; color:var(--tinta)}
+.ok{color:var(--vinho); font-weight:400; margin-top:12px; display:none}
+footer{text-align:center; padding:50px 24px 70px; color:var(--tinta-soft); font-size:12px; letter-spacing:.08em}
+footer .star-big{font-size:26px; color:var(--ouro)}
+.backlink{display:inline-block; margin-top:10px; color:var(--cobre); font-size:13px; text-decoration:none}
+.backlink:hover{color:var(--vinho)}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <img class="logo" src="og.jpg" alt="Mariah">
+  <div class="tagline">mapa de estratégia &amp; questionário</div>
+  <div class="sub">Munique, este é um <b>rascunho</b> que o Marcos e eu desenhamos — a sua visão é que manda. Leia, e no fim responda o questionário pra gente ajustar tudo à sua cara. ✦</div>
+  <a class="backlink" href="./">← voltar para a apresentação</a>
+</header>
+
+<div class="divider wrap"><span class="star">✦</span></div>
+
+<section class="wrap">
+  <div class="card">
+    <div class="eyebrow">o posicionamento (rascunho)</div>
+    <p class="quote" style="margin-top:10px">"Mariah — joias que expressam fé, beleza e propósito. Para a mulher que vive sua fé com elegância e gosta de presentear quem ama: peças atemporais em prata 925 e moissanite, com a <b style="font-style:normal">Estrela de Belém</b> como assinatura — do presente acessível à joia de herança."</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">1</span>A cliente que imaginamos</h2>
+    <p>Sua rede já aponta o caminho: <b>amigas, servidoras públicas e bancárias</b> — mulher de <b>~35 a 55 anos</b>, renda estável, católica, que valoriza qualidade durável, presenteia bastante e prefere elegância atemporal a tendência passageira.</p>
+    <div class="persona"><span>fé</span><span>elegância atemporal</span><span>presenteia</span><span>valoriza durabilidade</span><span>renda estável</span></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">2</span>Fé é a alma — não o catálogo inteiro</h2>
+    <p>Você não precisa escolher entre "só fé" e "gama maior". A <b>fé é a assinatura</b> (a Coleção Fé + a <b>Estrela de Belém</b>, que qualquer mulher usa, religiosa ou não), e ao redor dela vem uma linha elegante ampla. Assim a marca tem alma <b>e</b> variedade.</p>
+    <div class="tiers">
+      <div class="tier"><b>R$ 80–150</b><div class="role">porta de entrada</div><span>Presente, peça leve, medalhinha. Traz cliente nova e gira rápido.</span></div>
+      <div class="tier"><b>R$ 120–250</b><div class="role">o coração</div><span>Prata 925, moissanite, Coleção Fé. O volume e a recompra.</span></div>
+      <div class="tier"><b>R$ 500+</b><div class="role">assinatura · herança</div><span>Estrela de Belém, peça premium. Margem e "de mãe para filha".</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">3</span>O que te torna única</h2>
+    <ul class="list">
+      <li><b>Você, com fé de verdade, como rosto da marca.</b> Isso é incopiável — concorrente copia produto, não autenticidade.</li>
+      <li><b>Devocional premium</b> é um espaço vazio: o mercado é "loja religiosa barata" ou "luxo caro demais". O meio é seu.</li>
+      <li><b>Material que se prova:</b> prata 925, micragem, moissanite com certificado — qualidade declarada em toda a linha.</li>
+      <li><b>Um símbolo só seu:</b> a Estrela de Belém como peça-ícone (o "trevo" da Mariah).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">4</span>Largada enxuta (R$ 25 mil)</h2>
+    <div class="budget">
+      <div><b>R$ 15k</b><small>estoque</small></div>
+      <div><b>R$ 5k</b><small>papelaria/marca</small></div>
+      <div><b>R$ 5k</b><small>capital de giro</small></div>
+    </div>
+    <p>Sugestão: começar com uma <b>coleção-cápsula curada</b> (uns 15–25 modelos) ancorada na assinatura, em vez dos 3 andares cheios de cara. O andar de R$80 traz cliente; o de R$500+ traz margem. Online primeiro → física e revenda (seletiva, começando pelas colegas) depois.</p>
+  </div>
+</section>
+
+<div class="divider wrap"><span class="star">✦</span></div>
+
+<section class="wrap" id="questionario">
+  <div class="form-intro">
+    <div class="eyebrow">agora é com você, Munique</div>
+    <h2 style="font-size:clamp(24px,4vw,36px); color:var(--vinho); margin-top:8px">Questionário da fundadora</h2>
+    <p style="color:var(--tinta-soft); margin-top:10px">Responda com sinceridade — não tem certo nem errado. No fim, toque em <b>"Copiar minhas respostas"</b> e cole no WhatsApp do Marcos. A partir daí a gente reprograma tudo na sua voz. 💛</p>
+  </div>
+
+  <form id="formMariah">
+    <div class="q" data-label="Seu nome">
+      <span class="ql">Pode colocar seu nome aqui 🙂</span>
+      <input type="text" name="nome" placeholder="Munique...">
+    </div>
+
+    <div class="q" data-label="Fé: alma ou um dos pilares?">
+      <span class="ql">A Mariah deve ser, acima de tudo, uma marca de FÉ — ou a fé é UM dos pilares, junto com joias elegantes em geral?</span>
+      <label class="opt"><input type="radio" name="fe"> A fé é o coração de tudo</label>
+      <label class="opt"><input type="radio" name="fe"> A fé é um pilar importante, mas quero uma gama elegante ampla</label>
+      <label class="opt"><input type="radio" name="fe"> Ainda não tenho certeza</label>
+    </div>
+
+    <div class="q" data-label="Cliente principal (idade)">
+      <span class="ql">Qual cliente você imagina como a principal?</span>
+      <label class="opt"><input type="radio" name="idade"> 25 a 40 anos</label>
+      <label class="opt"><input type="radio" name="idade"> 35 a 55 anos</label>
+      <label class="opt"><input type="radio" name="idade"> 45 a 65 anos</label>
+      <label class="opt"><input type="radio" name="idade"> Todas as idades</label>
+    </div>
+
+    <div class="q" data-label="Faixas de preço desejadas">
+      <span class="ql">Que faixas de preço você quer ter? (pode marcar várias)</span>
+      <label class="opt"><input type="checkbox" name="preco"> R$ 80 a 150 (presentes)</label>
+      <label class="opt"><input type="checkbox" name="preco"> R$ 120 a 250 (coração)</label>
+      <label class="opt"><input type="checkbox" name="preco"> R$ 300 a 500</label>
+      <label class="opt"><input type="checkbox" name="preco"> Acima de R$ 500 (assinatura/herança)</label>
+    </div>
+
+    <div class="q" data-label="Ser o rosto da marca?">
+      <span class="ql">Você quer ser o rosto da marca — aparecer, gravar, contar sua fé e sua história?</span>
+      <label class="opt"><input type="radio" name="rosto"> Sim, adoro a ideia</label>
+      <label class="opt"><input type="radio" name="rosto"> Um pouco, com calma</label>
+      <label class="opt"><input type="radio" name="rosto"> Prefiro não aparecer</label>
+    </div>
+
+    <div class="q" data-label="A peça-ícone (Estrela de Belém)">
+      <span class="ql">Se a Mariah tivesse UMA peça-ícone (a "Estrela de Belém" da marca), ela seria...?</span>
+      <label class="opt"><input type="radio" name="icone"> Colar / gargantilha</label>
+      <label class="opt"><input type="radio" name="icone"> Anel</label>
+      <label class="opt"><input type="radio" name="icone"> Medalha / pingente</label>
+      <label class="opt"><input type="radio" name="icone"> Pulseira</label>
+      <label class="opt"><input type="radio" name="icone"> Brincos</label>
+      <label class="opt"><input type="radio" name="icone"> Ainda não sei</label>
+    </div>
+
+    <div class="q" data-label="O que mais gosta de vender">
+      <span class="ql">O que você MAIS gosta de vender?</span>
+      <label class="opt"><input type="radio" name="gosto"> As peças devocionais (de fé)</label>
+      <label class="opt"><input type="radio" name="gosto"> As peças elegantes e finas</label>
+      <label class="opt"><input type="radio" name="gosto"> Os dois igualmente</label>
+    </div>
+
+    <div class="q" data-label="Primeiras clientes">
+      <span class="ql">Quem são suas primeiras clientes? (marque as que valem)</span>
+      <label class="opt"><input type="checkbox" name="clientes"> Amigas</label>
+      <label class="opt"><input type="checkbox" name="clientes"> Servidoras públicas</label>
+      <label class="opt"><input type="checkbox" name="clientes"> Bancárias</label>
+      <label class="opt"><input type="checkbox" name="clientes"> Comunidade da igreja</label>
+      <label class="opt"><input type="checkbox" name="clientes"> Família</label>
+      <label class="opt"><input type="checkbox" name="clientes"> Outras</label>
+    </div>
+
+    <div class="q" data-label="Ordem do negócio">
+      <span class="ql">Como você imagina a ordem do negócio?</span>
+      <label class="opt"><input type="radio" name="canal"> Online primeiro, depois loja física</label>
+      <label class="opt"><input type="radio" name="canal"> Loja física o quanto antes</label>
+      <label class="opt"><input type="radio" name="canal"> Foco grande em revenda</label>
+      <label class="opt"><input type="radio" name="canal"> Um misto de tudo</label>
+    </div>
+
+    <div class="q" data-label="3 palavras para a Mariah">
+      <span class="ql">3 palavras que descrevem a Mariah pra você:</span>
+      <input type="text" name="palavras" placeholder="ex.: fé, elegância, propósito">
+    </div>
+
+    <div class="q" data-label="Marcas que admira">
+      <span class="ql">Marcas (de joia ou não) que você admira ou se inspira:</span>
+      <input type="text" name="admira" placeholder="...">
+    </div>
+
+    <div class="q" data-label="O que a Mariah NÃO deve ser">
+      <span class="ql">Tem algo que você NÃO quer que a Mariah seja?</span>
+      <textarea name="naoser" rows="2" placeholder="ex.: não quero que pareça popular/de massa..."></textarea>
+    </div>
+
+    <div class="q" data-label="Sonho para a Mariah em 1 ano">
+      <span class="ql">Um sonho seu pra Mariah daqui a 1 ano:</span>
+      <textarea name="sonho" rows="2" placeholder="..."></textarea>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn" id="copiar">Copiar minhas respostas ✦</button>
+      <div class="ok" id="ok">✓ Copiado! Agora é só colar no WhatsApp do Marcos. 💛</div>
+      <textarea id="resultado" readonly></textarea>
+    </div>
+  </form>
+</section>
+
+<footer>
+  <div class="star-big">✦</div>
+  <div>MARIAH · JOIAS, SEMIJOIAS &amp; ACESSÓRIOS</div>
+</footer>
+
+<script>
+// adiciona um campo aberto (complemento) em cada pergunta de marcar x
+document.querySelectorAll(".q").forEach(function(q){
+  var hasText = q.querySelector("input[type=text], textarea");
+  var hasChoice = q.querySelector("input[type=radio], input[type=checkbox]");
+  if(hasChoice && !hasText){
+    var w = document.createElement("input");
+    w.type = "text"; w.placeholder = "complemento (opcional)…";
+    w.style.marginTop = "12px";
+    q.appendChild(w);
+  }
+});
+function montar(){
+  var out = ["*Questionário da Mariah — respostas da fundadora*", ""];
+  document.querySelectorAll(".q").forEach(function(q){
+    var label = q.getAttribute("data-label");
+    var vals = [];
+    q.querySelectorAll("input[type=radio]:checked, input[type=checkbox]:checked").forEach(function(i){
+      vals.push(i.parentNode.textContent.trim());
+    });
+    q.querySelectorAll("input[type=text], textarea").forEach(function(i){
+      if(i.value.trim()) vals.push(i.value.trim());
+    });
+    out.push("• " + label + ": " + (vals.length ? vals.join(" | ") : "—"));
+  });
+  return out.join("\n");
+}
+document.getElementById("copiar").addEventListener("click", function(){
+  var txt = montar();
+  var ta = document.getElementById("resultado");
+  ta.value = txt; ta.style.display = "block";
+  function done(){ document.getElementById("ok").style.display = "block"; }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done, function(){ ta.select(); done(); });
+  } else { ta.select(); try{document.execCommand("copy");}catch(e){} done(); }
+});
+</script>
+</body>
+</html>
