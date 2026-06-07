@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="pt-BR" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mariah · O primeiro caminho</title>
+<script>document.documentElement.className="js"</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vinho:#894d51; --vinho-esc:#5e3236; --vinho-prof:#3c1f22;
+    --dourado:#d4ab48; --dourado-cl:#e6c97e; --dourado-esc:#8d5316;
+    --marfim:#faeee7; --tinta:#3a2a26; --branco:#fffdfb;
+    --disp:'Cormorant Garamond',Georgia,serif; --corpo:'Jost',system-ui,sans-serif;
+    --slide-padding:clamp(1.4rem,5vw,5rem);
+    --title:clamp(2.2rem,7vw,5rem); --h2:clamp(1.7rem,5vw,3.2rem);
+    --body:clamp(.92rem,1.7vw,1.18rem); --small:clamp(.62rem,1vw,.74rem);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow-x:hidden}
+  html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{font-family:var(--corpo);font-weight:300;color:var(--tinta);background:var(--marfim);
+    -webkit-font-smoothing:antialiased}
+  .star{display:inline-block;line-height:0;color:var(--dourado)}
+  .star svg{width:1em;height:1em;fill:currentColor}
+
+  .slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;
+    position:relative;display:flex;flex-direction:column;justify-content:center;
+    padding:var(--slide-padding)}
+  .slide .inner{max-width:min(92vw,900px);margin:0 auto;width:100%;position:relative;z-index:2}
+  h1{font-family:var(--disp);font-weight:400;font-size:var(--title);line-height:1.02;letter-spacing:.01em;text-wrap:balance}
+  h2{font-family:var(--disp);font-weight:500;font-size:var(--h2);line-height:1.08;text-wrap:balance}
+  p,li{font-size:var(--body);line-height:1.6;text-wrap:pretty}
+  .label{font-size:var(--small);letter-spacing:.34em;text-transform:uppercase;color:var(--dourado-esc)}
+
+  /* atmosfera: blobs desfocados (sem grão/textura) */
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;z-index:1;pointer-events:none}
+
+  /* slides VINHO (impacto) */
+  .wine{background:radial-gradient(120% 90% at 80% 10%,var(--vinho) 0%,var(--vinho-esc) 55%,var(--vinho-prof) 100%);color:#f6ddcd}
+  .wine .label{color:var(--dourado-cl)}
+  .wine h1,.wine h2{color:#fff}
+  .wine .blob{background:var(--dourado);opacity:.12}
+
+  /* slides CREME */
+  .cream{background:
+      radial-gradient(90% 70% at 8% 0%,#fff7ef 0%,transparent 45%),
+      radial-gradient(80% 60% at 100% 100%,#f6e3d6 0%,transparent 45%),var(--marfim)}
+  .cream h1,.cream h2{color:var(--vinho-esc)}
+  .cream .blob{background:#e9cdb6;opacity:.4}
+
+  /* HERO */
+  #s1 .wm{font-family:var(--disp);letter-spacing:.5em;text-transform:uppercase;font-size:clamp(1rem,2.2vw,1.3rem);
+    color:var(--dourado-cl);padding-left:.5em}
+  #s1 .hstar{font-size:clamp(34px,6vw,56px);margin:clamp(18px,3vh,30px) 0;display:block;color:var(--dourado)}
+  #s1 .sub{margin-top:22px;font-family:var(--disp);font-style:italic;font-size:clamp(1.1rem,2.6vw,1.7rem);color:var(--dourado-cl)}
+
+  /* STATEMENT */
+  .statement{font-family:var(--disp);font-weight:400;font-size:clamp(1.8rem,5.2vw,3.4rem);line-height:1.18;color:var(--vinho-esc);text-wrap:balance}
+  .statement b{font-style:italic;color:var(--dourado-esc);font-weight:500}
+  .statement .two{display:block;margin-top:.6em;font-size:.62em;color:#6e5750;font-style:normal}
+
+  /* REGRA DE OURO */
+  .golden-h .punch{margin-top:26px;font-family:var(--disp);font-style:italic;font-size:clamp(1.3rem,3.4vw,2rem);color:var(--dourado-cl)}
+  .golden-h p{max-width:40ch;margin-top:14px;color:#eccdb9}
+  .golden-h h2{margin-top:12px}
+
+  /* PASSOS */
+  .step-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,4vw,46px);align-items:center}
+  .bignum{font-family:var(--disp);font-weight:600;font-size:clamp(5rem,16vw,11rem);line-height:.8;color:var(--dourado);opacity:.85}
+  .bignum .dot{display:block;font-size:.12em;letter-spacing:.3em;text-transform:uppercase;color:var(--dourado-esc);opacity:1;margin-top:.6em}
+  .step-body .wk{font-size:var(--small);letter-spacing:.28em;text-transform:uppercase;color:var(--dourado-esc)}
+  .step-body h2{margin:6px 0 16px}
+  .step-body ul{list-style:none;display:flex;flex-direction:column;gap:clamp(.5rem,1.4vh,1rem)}
+  .step-body li{display:flex;gap:12px;color:#5f4f48}
+  .step-body li .star{flex:0 0 auto;font-size:.8rem;margin-top:.45em}
+  .step-body li b{color:var(--vinho);font-weight:500}
+  .q{margin-top:20px;font-family:var(--disp);font-style:italic;font-size:clamp(1.2rem,2.8vw,1.7rem);color:var(--vinho)}
+
+  /* COLUNAS (teste / papéis) */
+  .cols{display:grid;gap:clamp(16px,3vw,30px);margin-top:clamp(20px,4vh,40px)}
+  .c2{grid-template-columns:1fr 1fr}
+  .c3{grid-template-columns:repeat(3,1fr)}
+  .col{border:1px solid rgba(94,50,54,.16);border-radius:6px;padding:clamp(18px,3vw,30px);background:rgba(255,253,251,.7)}
+  .col .star{font-size:1.4rem}
+  .col h3{font-family:var(--disp);font-weight:600;color:var(--vinho);font-size:clamp(1.2rem,2.6vw,1.6rem);margin:10px 0 8px}
+  .col p{font-size:clamp(.82rem,1.4vw,1rem);color:#5f4f48}
+  .col .who{display:block;margin-top:14px;font-size:var(--small);letter-spacing:.2em;text-transform:uppercase;color:var(--dourado-esc)}
+  .sec-h{text-align:center;margin-bottom:6px}
+
+  /* CLOSE */
+  .close-h .bigstar{font-size:clamp(40px,7vw,60px);display:block;margin-bottom:24px;color:var(--dourado)}
+  .close-h p{font-family:var(--disp);font-size:clamp(1.7rem,4.4vw,2.6rem);line-height:1.4;max-width:20ch;color:#fff}
+  .close-h p b{font-style:italic;color:var(--dourado-cl);font-weight:500}
+  .pill{display:inline-block;margin-top:30px;padding:12px 26px;border:1px solid var(--dourado);border-radius:40px;color:var(--dourado-cl);font-size:var(--small);letter-spacing:.24em;text-transform:uppercase}
+
+  /* navegação / progresso */
+  .hud{position:fixed;right:clamp(14px,2.5vw,30px);bottom:clamp(14px,2.5vh,28px);z-index:50;display:flex;align-items:center;gap:14px;
+    font-size:var(--small);letter-spacing:.18em;color:var(--vinho);mix-blend-mode:multiply}
+  .dots{position:fixed;right:clamp(14px,2.5vw,30px);top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:10px}
+  .dots b{width:7px;height:7px;border-radius:50%;background:rgba(141,83,22,.3);transition:.4s;cursor:pointer}
+  .dots b.on{background:var(--dourado);transform:scale(1.5)}
+  .hint{position:fixed;left:50%;bottom:clamp(14px,2.5vh,28px);transform:translateX(-50%);z-index:50;color:var(--dourado-esc);
+    font-size:var(--small);letter-spacing:.28em;text-transform:uppercase;opacity:.7;animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:.8}}
+  @media(max-height:560px){.dots,.hint{display:none}}
+
+  /* reveal (só com JS; sem JS o conteúdo já aparece) */
+  .js .rv{opacity:0;transform:translateY(22px)}
+  .slide.in .rv{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .slide.in .rv:nth-child(2){transition-delay:.08s}
+  .slide.in .rv:nth-child(3){transition-delay:.16s}
+  .slide.in .rv:nth-child(4){transition-delay:.24s}
+  @media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}}
+
+  @media(max-width:640px){.c3,.c2{grid-template-columns:1fr}.step-grid{grid-template-columns:1fr;gap:8px}.bignum{font-size:clamp(3.4rem,18vw,5rem)}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="st" viewBox="0 0 24 24"><path d="M12 0c.7 7 4.3 10.6 12 11.4v.2C16.3 13.4 12.7 17 12 24c-.7-7-4.3-10.6-12-11.4v-.2C7.7 11.6 11.3 8 12 1z"/></symbol></svg>
+<main>
+
+  <section class="slide wine" id="s1">
+    <span class="blob" style="width:46vw;height:46vw;top:-10vw;right:-8vw"></span>
+    <div class="inner" style="text-align:center">
+      <div class="wm rv">Mariah</div>
+      <span class="hstar star rv"><svg><use href="#st"/></svg></span>
+      <h1 class="rv">O primeiro caminho</h1>
+      <p class="sub rv">O plano para a Mariah nascer do jeito certo</p>
+    </div>
+  </section>
+
+  <section class="slide cream">
+    <span class="blob" style="width:40vw;height:40vw;bottom:-12vw;left:-10vw"></span>
+    <div class="inner">
+      <p class="statement rv">Marca não nasce comprando estoque e torcendo. Nasce <b>provando que alguém quer</b> o que você faz.
+        <span class="two">Em seis semanas a gente responde à única pergunta que importa agora: alguém paga?</span></p>
+    </div>
+  </section>
+
+  <section class="slide wine">
+    <span class="blob" style="width:44vw;height:44vw;bottom:-14vw;right:-10vw"></span>
+    <div class="inner golden-h">
+      <span class="label rv">A regra de ouro</span>
+      <h2 class="rv">Vender antes de comprar</h2>
+      <p class="rv">A cliente paga, você compra do fornecedor, entrega no prazo. Zero risco de estoque parado, zero dinheiro preso.</p>
+      <div class="punch rv">O placar não é curtida. É pedido pago.</div>
+    </div>
+  </section>
+
+  <section class="slide cream">
+    <span class="blob" style="width:38vw;height:38vw;top:-12vw;right:-12vw"></span>
+    <div class="inner step-grid">
+      <div class="bignum rv">01<span class="dot">Semana 1</span></div>
+      <div class="step-body">
+        <div class="wk rv">Preparar a alma</div>
+        <h2 class="rv">Dizer quem a Mariah é</h2>
+        <ul>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>Cravar a frase que define a marca.</span></li>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>Ajustar o perfil para falar de <b>fé e significado</b>, não de preço.</span></li>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>Escolher 5 a 6 peças para testar, <b>sem comprar nenhuma</b>.</span></li>
+        </ul>
+        <p class="q rv">“A marca parece o que promete?”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide cream">
+    <span class="blob" style="width:38vw;height:38vw;bottom:-12vw;left:-12vw"></span>
+    <div class="inner step-grid">
+      <div class="bignum rv">02<span class="dot">Semanas 2–4</span></div>
+      <div class="step-body">
+        <div class="wk rv">Oferecer</div>
+        <h2 class="rv">Abrir a pré-venda</h2>
+        <ul>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>As pessoas que já te amam.</span></li>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span><b>Uma parceria de fé</b>: fotógrafa de batizado, criadora católica, grupo de mães.</span></li>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>Os posts de fé no perfil. Tudo sem pagar anúncio.</span></li>
+        </ul>
+        <p class="q rv">“Alguém paga?”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide cream">
+    <span class="blob" style="width:38vw;height:38vw;top:-12vw;right:-12vw"></span>
+    <div class="inner step-grid">
+      <div class="bignum rv">03<span class="dot">Semana 5</span></div>
+      <div class="step-body">
+        <div class="wk rv">Escutar</div>
+        <h2 class="rv">Ler o que os dados dizem</h2>
+        <ul>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>Anotar cada venda: de qual caminho veio, qual peça, qual valor.</span></li>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>Marcar se a pessoa voltou ou indicou alguém.</span></li>
+        </ul>
+        <p class="q rv">“A fé vira venda? De onde vem cliente de verdade?”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide cream">
+    <span class="blob" style="width:38vw;height:38vw;bottom:-12vw;left:-12vw"></span>
+    <div class="inner step-grid">
+      <div class="bignum rv">04<span class="dot">Semana 6</span></div>
+      <div class="step-body">
+        <div class="wk rv">Decidir</div>
+        <h2 class="rv">Cravar o tamanho do sonho</h2>
+        <ul>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>Deu certo: reinveste no que funcionou e define a meta com os pés no chão.</span></li>
+          <li class="rv"><span class="star"><svg><use href="#st"/></svg></span><span>Não deu: ajusta, tendo gastado quase nada. <b>Descobrir barato também é vitória.</b></span></li>
+        </ul>
+        <p class="q rv">“Vale apostar, e quanto?”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide cream">
+    <span class="blob" style="width:40vw;height:40vw;top:-14vw;left:50%"></span>
+    <div class="inner">
+      <div class="sec-h rv"><h2>O teste de verdade</h2></div>
+      <div class="cols c2">
+        <div class="col rv"><span class="star"><svg><use href="#st"/></svg></span><h3>Veio da fé?</h3><p>Se as vendas vierem das peças de fé (e não só das neutras), provamos a alma da marca. A hipótese central de tudo.</p></div>
+        <div class="col rv"><span class="star"><svg><use href="#st"/></svg></span><h3>Veio de um caminho que cresce?</h3><p>Se vier de parceria ou do orgânico (e não só de quem já te conhece), achamos o motor que escala sem queimar dinheiro.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide cream">
+    <span class="blob" style="width:40vw;height:40vw;bottom:-14vw;right:-10vw"></span>
+    <div class="inner">
+      <div class="sec-h rv"><h2>O que cada um faz</h2></div>
+      <div class="cols c3">
+        <div class="col rv"><span class="star"><svg><use href="#st"/></svg></span><h3>Munique</h3><p>Conversar, fechar a parceria, atender e vender, fotografar as peças.</p><span class="who">O coração</span></div>
+        <div class="col rv"><span class="star"><svg><use href="#st"/></svg></span><h3>Marcos + IA</h3><p>A frase, a bio, a oferta de pré-venda, a mensagem da parceria, a planilha.</p><span class="who">A estrutura</span></div>
+        <div class="col rv"><span class="star"><svg><use href="#st"/></svg></span><h3>Estúdio de conteúdo</h3><p>Os primeiros posts, com a alma e o tom certos da marca.</p><span class="who">A voz</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide wine" id="sf">
+    <span class="blob" style="width:48vw;height:48vw;top:-14vw;right:-12vw"></span>
+    <div class="inner close-h" style="text-align:center">
+      <span class="bigstar star rv"><svg><use href="#st"/></svg></span>
+      <p class="rv">A certeza de que <b>a Mariah tem lugar no mundo.</b></p>
+      <div class="rv"><span class="pill">Custo quase zero · um passo de cada vez</span></div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="dots" aria-label="navegação dos slides"></nav>
+<div class="hud"><span id="idx">01</span> / <span id="tot">10</span></div>
+<div class="hint">use as setas ↓ ou role</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dotsWrap=document.querySelector('.dots'), idx=document.getElementById('idx'), tot=document.getElementById('tot');
+  tot.textContent=String(slides.length).padStart(2,'0');
+  slides.forEach((s,i)=>{const b=document.createElement('b');b.tabIndex=0;b.setAttribute('role','button');
+    b.setAttribute('aria-label','Ir para o slide '+(i+1));
+    b.onclick=()=>s.scrollIntoView({behavior:'smooth'});dotsWrap.appendChild(b);});
+  const dots=[...dotsWrap.children], hint=document.querySelector('.hint');
+  let cur=0;
+  function sync(){idx.textContent=String(cur+1).padStart(2,'0');
+    dots.forEach((d,i)=>d.classList.toggle('on',i===cur)); hint.style.opacity=cur===0?'':'0';}
+  function go(n){cur=Math.max(0,Math.min(slides.length-1,n)); slides[cur].scrollIntoView({behavior:'smooth'}); sync();}
+  dots.forEach((d,i)=>d.onclick=()=>go(i));
+  // observer: revela + acompanha scroll manual (roda/toque)
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in'); cur=slides.indexOf(e.target); sync();}})},{threshold:.55});
+  slides.forEach(s=>io.observe(s));
+  // teclado (atualiza cur na hora, p/ toques rápidos funcionarem)
+  addEventListener('keydown',(e)=>{
+    if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1);}
+    else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1);}
+    else if(e.key==='Home'){e.preventDefault();go(0);}
+    else if(e.key==='End'){e.preventDefault();go(slides.length-1);}
+  });
+</script>
+</body>
+</html>
