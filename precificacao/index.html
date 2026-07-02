@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Mariah · Precificação de Semijoias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Base viewport-safe (frontend-slides) ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow-x:hidden}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+
+:root{
+  --marfim:#faeee7; --marfim2:#f3e3d8; --branco:#fffdfb;
+  --vinho:#894d51; --vinho-esc:#5e3236;
+  --tinta:#3a2a26; --musgo:#8a8064;
+  --dourado:#caa043; --dourado-esc:#9a5b1c;
+  --linha:rgba(94,50,54,.14);
+  --disp:'Cormorant Garamond',Georgia,serif;
+  --corpo:'Jost',system-ui,-apple-system,sans-serif;
+
+  --title-size:clamp(2rem,6.5vw,5rem);
+  --h2-size:clamp(1.5rem,4.2vw,3rem);
+  --h3-size:clamp(1.05rem,2.4vw,1.7rem);
+  --body-size:clamp(.85rem,1.5vw,1.08rem);
+  --small-size:clamp(.7rem,1.05vw,.85rem);
+  --slide-padding:clamp(1.4rem,5vw,5.5rem);
+  --gap:clamp(.6rem,2vw,1.6rem);
+}
+
+body{font-family:var(--corpo);color:var(--tinta);background:var(--marfim);font-weight:400;letter-spacing:.01em}
+
+.slide{
+  width:100vw;height:100vh;height:100dvh;overflow:hidden;
+  scroll-snap-align:start;position:relative;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:var(--slide-padding);
+}
+.wrap{width:100%;max-width:1080px;margin:0 auto}
+
+/* ===== Tipografia ===== */
+.eyebrow{font-family:var(--corpo);font-weight:500;text-transform:uppercase;
+  letter-spacing:.32em;font-size:var(--small-size);color:var(--vinho)}
+h1{font-family:var(--disp);font-weight:600;font-size:var(--title-size);
+  line-height:.98;color:var(--vinho-esc);letter-spacing:-.01em}
+h2{font-family:var(--disp);font-weight:600;font-size:var(--h2-size);
+  line-height:1.02;color:var(--vinho-esc)}
+h2 em{font-style:italic;color:var(--dourado-esc)}
+h3{font-family:var(--disp);font-weight:600;font-size:var(--h3-size);color:var(--vinho)}
+p{font-size:var(--body-size);line-height:1.6;max-width:60ch;color:var(--tinta)}
+.lead{font-size:clamp(1rem,1.9vw,1.35rem);color:var(--musgo);font-weight:300}
+.hair{width:clamp(48px,7vw,110px);height:2px;background:var(--dourado);border:0;margin:var(--gap) 0}
+.serif-num{font-family:var(--disp);font-style:italic;color:var(--dourado);font-weight:500}
+
+/* ===== Detalhes decorativos ===== */
+.slide::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 85% 10%,rgba(202,160,67,.10),transparent 55%)}
+.tag{position:absolute;top:clamp(1rem,3vw,2rem);left:clamp(1.4rem,5vw,5.5rem);
+  font-size:var(--small-size);letter-spacing:.3em;text-transform:uppercase;color:var(--musgo);z-index:2}
+.idx{position:absolute;top:clamp(1rem,3vw,2rem);right:clamp(1.4rem,5vw,5.5rem);
+  font-family:var(--disp);font-style:italic;color:var(--musgo);font-size:var(--small-size);z-index:2}
+
+/* ===== Capa ===== */
+.cover{background:
+  linear-gradient(180deg,var(--marfim) 0%,var(--marfim2) 100%)}
+.cover .mark{font-family:var(--disp);font-size:clamp(1.1rem,2vw,1.5rem);
+  letter-spacing:.5em;text-transform:uppercase;color:var(--vinho);font-weight:500}
+.cover h1{margin:.35em 0 .2em}
+.cover .sig{font-family:var(--disp);font-style:italic;font-size:clamp(1rem,2vw,1.4rem);color:var(--musgo)}
+
+/* ===== Recibo / cards ===== */
+.receipt{background:var(--branco);border:1px solid var(--linha);border-radius:14px;
+  padding:clamp(1rem,2.4vw,1.8rem) clamp(1.1rem,2.8vw,2.2rem);
+  box-shadow:0 18px 40px -28px rgba(94,50,54,.5)}
+.rrow{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  padding:clamp(.35rem,1vh,.6rem) 0;border-bottom:1px dashed var(--linha);font-size:var(--body-size)}
+.rrow:last-child{border-bottom:0}
+.rrow .lbl{color:var(--tinta)}
+.rrow .lbl small{display:block;color:var(--musgo);font-size:.78em;letter-spacing:.02em}
+.rrow .val{font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.rrow.total{border-top:2px solid var(--vinho);border-bottom:0;margin-top:.3rem;padding-top:.7rem}
+.rrow.total .lbl{font-family:var(--disp);font-size:1.15em;color:var(--vinho-esc);font-weight:600}
+.rrow.total .val{font-family:var(--disp);font-size:1.3em;color:var(--vinho-esc);font-weight:700}
+
+.price-row{display:flex;gap:var(--gap);flex-wrap:wrap;margin-top:var(--gap)}
+.pchip{flex:1;min-width:120px;background:var(--marfim2);border:1px solid var(--linha);border-radius:12px;
+  padding:clamp(.7rem,1.6vw,1.1rem);text-align:center}
+.pchip .mult{font-size:var(--small-size);letter-spacing:.15em;text-transform:uppercase;color:var(--musgo)}
+.pchip .pv{font-family:var(--disp);font-weight:700;font-size:clamp(1.4rem,3.2vw,2.3rem);color:var(--vinho)}
+.pchip.hi{background:var(--vinho);border-color:var(--vinho)}
+.pchip.hi .mult{color:rgba(255,253,251,.7)}
+.pchip.hi .pv{color:var(--branco)}
+
+/* ===== Grid duas colunas ===== */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,3vw,2.6rem);align-items:center}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:12px;
+  padding:clamp(.8rem,1.8vw,1.3rem)}
+.card h3{margin-bottom:.3em}
+.card .big{font-family:var(--disp);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.4rem);color:var(--dourado-esc);line-height:1}
+.card .cap{font-size:var(--small-size);color:var(--musgo);text-transform:uppercase;letter-spacing:.14em}
+
+/* comparação */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(.6rem,2vw,1.6rem);align-items:stretch}
+.vs .col{background:var(--branco);border:1px solid var(--linha);border-radius:14px;padding:clamp(.9rem,2.2vw,1.6rem)}
+.vs .col.win{border:1.5px solid var(--dourado);box-shadow:0 16px 34px -26px rgba(202,160,67,.7)}
+.vs .col h3{margin-bottom:.4em}
+.vs .col ul{list-style:none;font-size:var(--body-size)}
+.vs .col li{display:flex;justify-content:space-between;gap:.6rem;padding:.28rem 0;border-bottom:1px dashed var(--linha)}
+.vs .col li:last-child{border-bottom:0}
+.vs .col li b{font-variant-numeric:tabular-nums;color:var(--vinho-esc)}
+.vs .mid{display:flex;align-items:center;justify-content:center;font-family:var(--disp);
+  font-style:italic;font-size:clamp(1.1rem,2.4vw,1.8rem);color:var(--musgo)}
+
+/* ===== Calculadora ===== */
+.calc{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(1rem,3vw,2.4rem);align-items:center}
+.field{margin-bottom:clamp(.5rem,1.6vh,1rem)}
+.field label{display:block;font-size:var(--small-size);text-transform:uppercase;
+  letter-spacing:.14em;color:var(--vinho);margin-bottom:.28em}
+.field label span{color:var(--musgo);text-transform:none;letter-spacing:0;font-size:.92em}
+.field input,.field select{width:100%;font-family:var(--corpo);font-size:clamp(.95rem,1.7vw,1.15rem);
+  color:var(--tinta);background:var(--branco);border:1px solid var(--linha);border-radius:10px;
+  padding:.6rem .8rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus{border-color:var(--dourado);box-shadow:0 0 0 3px rgba(202,160,67,.18)}
+.result{background:var(--vinho);color:var(--branco);border-radius:16px;
+  padding:clamp(1.1rem,2.8vw,2rem);box-shadow:0 20px 44px -26px rgba(94,50,54,.8)}
+.result .rl{display:flex;justify-content:space-between;align-items:baseline;padding:.32rem 0;font-size:var(--body-size)}
+.result .rl span:first-child{color:rgba(255,253,251,.72)}
+.result .rl .v{font-variant-numeric:tabular-nums;font-weight:500}
+.result .custo{border-top:1px solid rgba(255,253,251,.25);border-bottom:1px solid rgba(255,253,251,.25);
+  margin:.4rem 0;padding:.6rem 0}
+.result .custo .v{font-family:var(--disp);font-size:1.35em;font-weight:700}
+.result .venda{margin-top:.5rem}
+.result .venda .v{font-family:var(--disp);font-size:1.7em;font-weight:700;color:#ffe9b8}
+.result .lucro .v{color:#ffe9b8;font-weight:600}
+.note-calc{font-size:var(--small-size);color:var(--musgo);margin-top:.7rem;line-height:1.45}
+
+/* benchmark */
+.bench{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:var(--gap)}
+.bench .b{background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:clamp(.8rem,1.9vw,1.3rem)}
+.bench .b .n{font-family:var(--disp);font-weight:600;font-size:1.15em;color:var(--vinho)}
+.bench .b .d{font-size:var(--small-size);color:var(--musgo);margin-top:.2em;text-transform:uppercase;letter-spacing:.08em}
+.bench .b .g{font-size:var(--body-size);margin-top:.5em;color:var(--tinta)}
+.bench .b .g b{color:var(--dourado-esc)}
+
+ul.clean{list-style:none}
+ul.clean li{font-size:var(--body-size);line-height:1.5;padding:.3rem 0 .3rem 1.5rem;position:relative;max-width:58ch}
+ul.clean li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:8px;
+  border-radius:50%;background:var(--dourado)}
+
+.callout{background:var(--marfim2);border-left:3px solid var(--dourado);border-radius:0 10px 10px 0;
+  padding:clamp(.8rem,2vw,1.2rem) clamp(1rem,2.4vw,1.5rem);font-size:var(--body-size);color:var(--vinho-esc);max-width:64ch}
+.callout b{color:var(--dourado-esc)}
+
+/* ===== Navegação / progresso ===== */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--dourado);width:0;z-index:50;transition:width .25s}
+.dots{position:fixed;right:clamp(.7rem,1.6vw,1.4rem);top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:.7rem;z-index:50}
+.dots button{width:9px;height:9px;border-radius:50%;border:1px solid var(--vinho);
+  background:transparent;cursor:pointer;padding:0;transition:transform .2s,background .2s}
+.dots button.on{background:var(--vinho);transform:scale(1.35)}
+.hint{position:fixed;bottom:clamp(.8rem,2vw,1.4rem);left:50%;transform:translateX(-50%);
+  font-size:var(--small-size);letter-spacing:.12em;text-transform:uppercase;color:var(--musgo);z-index:50;
+  display:flex;align-items:center;gap:.5rem;opacity:.8}
+.hint .k{border:1px solid var(--linha);border-radius:5px;padding:.05rem .4rem;background:var(--branco)}
+
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.slide.in .reveal{opacity:1;transform:none}
+.slide.in .reveal:nth-child(2){transition-delay:.08s}
+.slide.in .reveal:nth-child(3){transition-delay:.16s}
+.slide.in .reveal:nth-child(4){transition-delay:.24s}
+.slide.in .reveal:nth-child(5){transition-delay:.32s}
+
+/* ===== Responsivo curto / mobile ===== */
+@media (max-width:820px){
+  .two,.calc{grid-template-columns:1fr}
+  .vs{grid-template-columns:1fr}
+  .vs .mid{padding:.2rem 0}
+  .cols3{grid-template-columns:1fr}
+  .dots{display:none}
+  .calc{gap:.7rem}
+  .calc .field{margin-bottom:.4rem}
+  .calc input,.calc select{padding:.5rem .7rem}
+  .result{padding:.9rem 1.1rem}
+  .result .rl{padding:.2rem 0}
+  .note-calc{margin-top:.45rem}
+}
+@media (max-height:700px){
+  :root{--slide-padding:clamp(1rem,3.5vw,2.5rem);--gap:clamp(.4rem,1.4vw,1rem);
+    --title-size:clamp(1.6rem,5.5vw,3rem);--h2-size:clamp(1.25rem,3.4vw,2rem)}
+  .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.2s!important}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav class="dots" id="dots" aria-label="Navegação de slides"></nav>
+
+<main>
+  <!-- 1 · CAPA -->
+  <section class="slide cover" aria-label="Capa">
+    <div class="wrap">
+      <div class="mark reveal">Mariah</div>
+      <h1 class="reveal">Quanto cobrar<br>pela sua semijoia</h1>
+      <hr class="hair reveal">
+      <p class="lead reveal">Do bruto ao preço justo, sem chutar. A conta que transforma cada peça em lucro de verdade.</p>
+      <p class="sig reveal" style="margin-top:1.2rem">feito com carinho para a Munique</p>
+    </div>
+  </section>
+
+  <!-- 2 · O BANHO MANDA -->
+  <section class="slide" aria-label="O banho manda no preço">
+    <span class="tag">o segredo do custo</span><span class="idx">02</span>
+    <div class="wrap">
+      <h2 class="reveal">O <em>banho</em> manda no preço,<br>não a peça bruta.</h2>
+      <hr class="hair reveal">
+      <div class="two">
+        <div class="reveal">
+          <p>A maioria olha só o preço da peça no bruto e acha que ela é "barata". O custo de verdade vem depois — e quem domina isso precifica com segurança.</p>
+          <ul class="clean" style="margin-top:1rem">
+            <li>O custo real = <b>bruto + banho + antialérgico + embalagem</b>.</li>
+            <li>O banho costuma pesar de <b>50% a 90%</b> do custo da peça.</li>
+            <li>Ele varia com o <b>peso</b>, os <b>milésimos</b> e a <b>cotação do ouro</b> do dia.</li>
+          </ul>
+        </div>
+        <div class="callout reveal">
+          Regra de bolo do banho:<br>
+          <b>(milésimos + mão de obra) × cotação do ouro ÷ 1000 × peso da peça</b>.<br>
+          <span style="color:var(--musgo)">É o que a galvânica cobra por grama. Confirme a cotação com ela no dia.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · EXEMPLO BRUTO -->
+  <section class="slide" aria-label="Exemplo do brinco no bruto">
+    <span class="tag">exemplo real · no bruto</span><span class="idx">03</span>
+    <div class="wrap">
+      <h2 class="reveal">Um par de brincos,<br>do bruto à etiqueta.</h2>
+      <hr class="hair reveal">
+      <div class="two">
+        <div class="receipt reveal">
+          <div class="rrow"><span class="lbl">Peça bruta</span><span class="val">R$ 10,00</span></div>
+          <div class="rrow"><span class="lbl">Banho 5 milésimos <small>par ~3g · ouro ~R$650/g</small></span><span class="val">R$ 16,60</span></div>
+          <div class="rrow"><span class="lbl">Antialérgico <small>base de paládio</small></span><span class="val">R$ 1,20</span></div>
+          <div class="rrow"><span class="lbl">Embalagem</span><span class="val">R$ 2,00</span></div>
+          <div class="rrow total"><span class="lbl">Custo total</span><span class="val">R$ 29,80</span></div>
+        </div>
+        <div class="reveal">
+          <p style="margin-bottom:.4rem">O banho (R$ 16,60) já é <b>maior que a peça bruta</b> — é ele que manda. Com o custo na mão, o preço vira decisão, não chute:</p>
+          <div class="price-row">
+            <div class="pchip"><div class="mult">2,5×</div><div class="pv">R$ 75</div></div>
+            <div class="pchip hi"><div class="mult">3× · sugerido</div><div class="pv">R$ 89</div></div>
+            <div class="pchip"><div class="mult">4×</div><div class="pv">R$ 119</div></div>
+          </div>
+          <p class="note-calc" style="color:var(--musgo);margin-top:.9rem">Lucro de R$ 45 a R$ 90 por par. Esse é o modelo que mais rende: comprar no bruto e mandar banhar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · PRONTA / SUBESTIMAÇÃO -->
+  <section class="slide" aria-label="E se comprar pronta">
+    <span class="tag">o outro caminho · pronta</span><span class="idx">04</span>
+    <div class="wrap">
+      <h2 class="reveal">E se comprar o brinco<br><em>já pronto</em>?</h2>
+      <hr class="hair reveal">
+      <div class="two">
+        <div class="reveal">
+          <p>Comprando o mesmo brinco já banhado no atacado, você paga mais caro pela peça (uns <b>R$ 40</b>) — o atacadista já embutiu o banho e a margem dele.</p>
+          <div class="callout" style="margin-top:1rem">
+            Muito curso ensina a revender pronta com margem de só <b>50% (×1,5)</b> — R$ 60.
+            Mas o mercado real revende pronta com <b>×2 a ×2,5</b>. Não aceite os "50%".
+          </div>
+        </div>
+        <div class="price-row reveal" style="flex-direction:column">
+          <div class="pchip" style="min-width:0"><div class="mult">como muitos ensinam · 1,5×</div><div class="pv" style="color:var(--musgo)">R$ 60</div></div>
+          <div class="pchip hi" style="min-width:0"><div class="mult">o que o mercado faz · 2 a 2,5×</div><div class="pv">R$ 80–100</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · COMPARAÇÃO -->
+  <section class="slide" aria-label="Bruto contra pronta">
+    <span class="tag">lado a lado</span><span class="idx">05</span>
+    <div class="wrap">
+      <h2 class="reveal" style="text-align:center;margin-bottom:.2em">O mesmo brinco, dois caminhos</h2>
+      <hr class="hair reveal" style="margin-left:auto;margin-right:auto">
+      <div class="vs reveal">
+        <div class="col win">
+          <h3>No bruto <span class="serif-num">+ banho</span></h3>
+          <ul>
+            <li>Custo <b>~R$ 30</b></li>
+            <li>Preço (2,5–4×) <b>R$ 75–120</b></li>
+            <li>Lucro por par <b>R$ 45–90</b></li>
+          </ul>
+        </div>
+        <div class="mid">vs</div>
+        <div class="col">
+          <h3>Comprada <span class="serif-num">pronta</span></h3>
+          <ul>
+            <li>Custo <b>~R$ 40</b></li>
+            <li>Preço real (2–2,5×) <b>R$ 80–100</b></li>
+            <li>Lucro por par <b>R$ 40–60</b></li>
+          </ul>
+        </div>
+      </div>
+      <p class="reveal" style="text-align:center;margin:var(--gap) auto 0;color:var(--musgo)">O bruto rende mais, sim — mas a pronta <b style="color:var(--vinho)">não é o mau negócio de "só 50%"</b> que muitos pintam.</p>
+    </div>
+  </section>
+
+  <!-- 6 · CALCULADORA -->
+  <section class="slide" aria-label="Calculadora">
+    <span class="tag">faça com a sua peça</span><span class="idx">06</span>
+    <div class="wrap">
+      <h2 class="reveal" style="margin-bottom:.15em">Calculadora rápida</h2>
+      <hr class="hair reveal">
+      <div class="calc">
+        <div class="reveal">
+          <div class="field">
+            <label for="bruto">Peça bruta <span>(R$)</span></label>
+            <input id="bruto" type="number" inputmode="decimal" value="10" min="0" step="0.5">
+          </div>
+          <div class="field">
+            <label for="peso">Peso da peça <span>(g)</span></label>
+            <input id="peso" type="number" inputmode="decimal" value="3" min="0" step="0.5">
+          </div>
+          <div class="field">
+            <label for="mil">Milésimos</label>
+            <select id="mil">
+              <option value="3">3 · uso ocasional</option>
+              <option value="5" selected>5 · padrão comercial</option>
+              <option value="7">7 · uso frequente</option>
+              <option value="10">10 · premium</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cot">Cotação do ouro <span>(R$/g — confirme com a galvânica)</span></label>
+            <input id="cot" type="number" inputmode="decimal" value="650" min="0" step="10">
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="result" aria-live="polite">
+            <div class="rl"><span>Peça bruta</span><span class="v" id="o-bruto">R$ 10,00</span></div>
+            <div class="rl"><span>Banho + antialérgico</span><span class="v" id="o-banho">R$ 17,80</span></div>
+            <div class="rl"><span>Embalagem</span><span class="v" id="o-emb">R$ 2,00</span></div>
+            <div class="rl custo"><span>Custo total</span><span class="v" id="o-custo">R$ 29,80</span></div>
+            <div class="rl venda"><span>Preço sugerido (3×)</span><span class="v" id="o-preco">R$ 89</span></div>
+            <div class="rl lucro"><span>Lucro por peça</span><span class="v" id="o-lucro">R$ 60</span></div>
+            <div class="rl" style="opacity:.85"><span>Faixa 2,5× a 4×</span><span class="v" id="o-faixa">R$ 75 – R$ 119</span></div>
+          </div>
+          <p class="note-calc">Premissas fixas: mão de obra R$ 3,50 · antialérgico R$ 390/kg · embalagem R$ 2. Ajuste conforme a sua galvânica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · BENCHMARK CONCORRENTES -->
+  <section class="slide" aria-label="Benchmark das concorrentes">
+    <span class="tag">de olho no mercado</span><span class="idx">07</span>
+    <div class="wrap">
+      <h2 class="reveal">Que banho as <em>concorrentes</em> dão?</h2>
+      <hr class="hair reveal">
+      <div class="bench reveal">
+        <div class="b"><div class="n">Herreira</div><div class="d">folheado premium</div><div class="g">Ouro 18k · <b>10–15 milésimos</b> · antialérgica</div></div>
+        <div class="b"><div class="n">Drusi</div><div class="d">folheado</div><div class="g">18k / prata / ródio · "banho premium"</div></div>
+        <div class="b"><div class="n">Allenza · Rubiê · Pequena Joia</div><div class="d">prata 925 + moissanite</div><div class="g">Garantia de <b>1 ano a vitalícia</b></div></div>
+        <div class="b" style="border-color:var(--dourado)"><div class="n" style="color:var(--dourado-esc)">Mariah</div><div class="d">posição atual</div><div class="g">18k / ródio · garantia <b>12 meses</b></div></div>
+      </div>
+      <p class="reveal" style="margin-top:var(--gap);color:var(--musgo)">Para brigar no premium com a Herreira, <b style="color:var(--vinho)">3 milésimos é pouco</b> — o topo do mercado está em 10–15. O piso do curso serve pra entrada, não pra premium.</p>
+      <p class="note-calc reveal" style="margin-top:.4rem">Fonte: mapeamento em <code>docs/kit/</code> — a maioria das concorrentes não divulga milésimos; só algumas registram banho/garantia.</p>
+    </div>
+  </section>
+
+  <!-- 8 · FECHO -->
+  <section class="slide cover" aria-label="Regra de ouro">
+    <span class="idx">08</span>
+    <div class="wrap">
+      <div class="eyebrow reveal">a regra de ouro</div>
+      <h2 class="reveal" style="margin:.25em 0">Três coisas mexem no seu preço.</h2>
+      <hr class="hair reveal">
+      <div class="cols3 reveal">
+        <div class="card"><div class="cap">confirme no dia</div><h3>Cotação do ouro</h3><p style="font-size:var(--small-size)">Pode variar o banho em 30%+. Pergunte à galvânica.</p></div>
+        <div class="card"><div class="cap">quanto mais, mais banho</div><h3>Peso da peça</h3><p style="font-size:var(--small-size)">Brinco pesado dobra o custo do banho.</p></div>
+        <div class="card"><div class="cap">entrada × premium</div><h3>Milésimos</h3><p style="font-size:var(--small-size)">3 é entrada; 10–15 é premium de mercado.</p></div>
+      </div>
+      <p class="sig reveal" style="font-family:var(--disp);font-style:italic;color:var(--vinho);font-size:clamp(1.1rem,2.2vw,1.6rem);margin-top:var(--gap)">Preço bom nasce de conta, não de chute. — Mariah</p>
+    </div>
+  </section>
+</main>
+
+<div class="hint" id="hint"><span class="k">↓</span> role ou use as setas</div>
+
+<script>
+(function(){
+  "use strict";
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dots=document.getElementById('dots');
+  var progress=document.getElementById('progress');
+  var hint=document.getElementById('hint');
+
+  // dots
+  slides.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.setAttribute('aria-label','Ir para o slide '+(i+1));
+    b.addEventListener('click',function(){s.scrollIntoView({behavior:'smooth'});});
+    dots.appendChild(b);
+  });
+  var dotBtns=[].slice.call(dots.children);
+
+  // reveal + active state via IntersectionObserver
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        var i=slides.indexOf(e.target);
+        dotBtns.forEach(function(d,j){d.classList.toggle('on',j===i);});
+        progress.style.width=((i+1)/slides.length*100)+'%';
+        if(i>0&&hint) hint.style.opacity='0';
+      }
+    });
+  },{threshold:0.55});
+  slides.forEach(function(s){io.observe(s);});
+  slides[0].classList.add('in');
+
+  // keyboard navigation
+  function current(){
+    var best=0,bd=Infinity;
+    slides.forEach(function(s,i){var d=Math.abs(s.getBoundingClientRect().top);if(d<bd){bd=d;best=i;}});
+    return best;
+  }
+  function go(n){n=Math.max(0,Math.min(slides.length-1,n));slides[n].scrollIntoView({behavior:'smooth'});}
+  window.addEventListener('keydown',function(e){
+    if(['ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(current()+1);}
+    else if(['ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(current()-1);}
+    else if(e.key==='Home'){e.preventDefault();go(0);}
+    else if(e.key==='End'){e.preventDefault();go(slides.length-1);}
+  });
+
+  // ===== Calculadora =====
+  var MO=3.5, ANTI_KG=390, EMB=2;
+  var els={bruto:'bruto',peso:'peso',mil:'mil',cot:'cot'};
+  function n(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)?0:v;}
+  function brl(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function brl0(v){return 'R$ '+Math.round(v).toLocaleString('pt-BR');}
+  function calc(){
+    var bruto=n('bruto'),peso=n('peso'),mil=n('mil'),cot=n('cot');
+    var banho=(mil+MO)*cot/1000*peso;
+    var anti=ANTI_KG/1000*peso;
+    var emb=EMB;
+    var custo=bruto+banho+anti+emb;
+    document.getElementById('o-bruto').textContent=brl(bruto);
+    document.getElementById('o-banho').textContent=brl(banho+anti);
+    document.getElementById('o-emb').textContent=brl(emb);
+    document.getElementById('o-custo').textContent=brl(custo);
+    document.getElementById('o-preco').textContent=brl0(custo*3);
+    document.getElementById('o-lucro').textContent=brl0(custo*3-custo);
+    document.getElementById('o-faixa').textContent=brl0(custo*2.5)+' – '+brl0(custo*4);
+  }
+  Object.values(els).forEach(function(id){
+    var el=document.getElementById(id);
+    el.addEventListener('input',calc);el.addEventListener('change',calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
