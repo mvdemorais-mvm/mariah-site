@@ -1,0 +1,1020 @@
+<title>Radar Mariah — Quem está ganhando o jogo</title>
+
+<style>
+  :root {
+    /* Paleta oficial Mariah (brand book @essenza.midia) */
+    --marfim:   #faeee7;
+    --nude:     #f6e0ce;
+    --nude-med: #edc3ad;
+    --taupe:    #c5a791;
+    --vinho:    #894d51;
+    --vinho-fundo: #5e3236;
+    --dourado:  #caa043;
+    --cobre:    #c8914f;
+
+    /* Neutros puxados para o vinho — nunca cinza puro */
+    --tinta:    #2b1d1c;
+    --tinta-media: #6b5551;
+    --tinta-fraca: #93807c;
+
+    --fundo:    var(--marfim);
+    --superficie: #fff8f2;
+    --linha:    #e6cdbc;
+
+    /* Semânticas — separadas do dourado de destaque */
+    --alta:     #6f7f56;
+    --queda:    #9c4a42;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: "Yu Gothic UI", "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+    --medida: 66ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fundo:    #191111;
+      --superficie: #221818;
+      --linha:    #3d2c2a;
+      --tinta:    #f6e0ce;
+      --tinta-media: #c3a79e;
+      --tinta-fraca: #92786f;
+      --vinho:    #cf8891;
+      --vinho-fundo: #2e1c1e;
+      --dourado:  #dcb763;
+      --cobre:    #d9a463;
+      --taupe:    #8d7264;
+      --alta:     #9ab183;
+      --queda:    #cf7c72;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fundo:    #191111;
+    --superficie: #221818;
+    --linha:    #3d2c2a;
+    --tinta:    #f6e0ce;
+    --tinta-media: #c3a79e;
+    --tinta-fraca: #92786f;
+    --vinho:    #cf8891;
+    --vinho-fundo: #2e1c1e;
+    --dourado:  #dcb763;
+    --cobre:    #d9a463;
+    --taupe:    #8d7264;
+    --alta:     #9ab183;
+    --queda:    #cf7c72;
+  }
+  :root[data-theme="light"] {
+    --fundo:    #faeee7;
+    --superficie: #fff8f2;
+    --linha:    #e6cdbc;
+    --tinta:    #2b1d1c;
+    --tinta-media: #6b5551;
+    --tinta-fraca: #93807c;
+    --vinho:    #894d51;
+    --vinho-fundo: #5e3236;
+    --dourado:  #caa043;
+    --cobre:    #c8914f;
+    --taupe:    #c5a791;
+    --alta:     #6f7f56;
+    --queda:    #9c4a42;
+  }
+
+  * { box-sizing: border-box; }
+
+  .pagina {
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    font-weight: 300;
+    padding: 0 0 5rem;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .env {
+    max-width: var(--medida);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  .env-larga {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  /* ---------- Cabeçalho ---------- */
+  .capa {
+    background: var(--vinho-fundo);
+    color: var(--nude);
+    padding: 3.5rem 0 3rem;
+    border-bottom: 3px solid var(--dourado);
+  }
+  .capa .env { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .estrela { display: block; color: var(--dourado); }
+
+  .selo {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dourado);
+    font-weight: 400;
+  }
+  .capa h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 7vw, 3.1rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--marfim);
+  }
+  .capa .linha-fina {
+    font-size: 1.05rem;
+    color: var(--nude-med);
+    margin: 0;
+    max-width: 34rem;
+  }
+  .ficha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    margin-top: 0.6rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(250, 238, 231, 0.18);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    font-variant-numeric: tabular-nums;
+  }
+  .ficha b { color: var(--nude); font-weight: 500; }
+
+  /* ---------- Seções ---------- */
+  section { margin-top: 3.5rem; }
+
+  .divisor {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.8rem;
+    color: var(--taupe);
+  }
+  .divisor::before, .divisor::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--linha);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 4.5vw, 2rem);
+    line-height: 1.2;
+    color: var(--vinho);
+    text-wrap: balance;
+    margin: 0 0 0.9rem;
+  }
+  h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin: 0;
+    color: var(--tinta);
+  }
+  p { margin: 0 0 1.1rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; color: var(--tinta); }
+
+  .abertura {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 3.4vw, 1.4rem);
+    line-height: 1.55;
+    color: var(--tinta);
+  }
+  .abertura em {
+    font-style: normal;
+    color: var(--vinho);
+    font-weight: 500;
+  }
+
+  /* ---------- Cartões do ranking ---------- */
+  .lista-marcas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: posicao;
+  }
+  .marca {
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 2px;
+    padding: 1.5rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .marca-topo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .posicao {
+    counter-increment: posicao;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--dourado);
+    line-height: 1;
+    min-width: 1.4ch;
+  }
+  .posicao::before { content: counter(posicao); }
+  .marca-nome { flex: 1; min-width: 12ch; }
+  .marca-porte {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--tinta-fraca);
+    display: block;
+    margin-top: 0.15rem;
+  }
+
+  .numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 0.9rem 1.2rem;
+    padding: 0.9rem 0;
+    border-block: 1px solid var(--linha);
+  }
+  .num { display: flex; flex-direction: column; gap: 0.1rem; }
+  .num dt {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--tinta-fraca);
+  }
+  .num dd {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    color: var(--tinta);
+  }
+  .num dd.sobe { color: var(--alta); }
+  .num dd.desce { color: var(--queda); }
+
+  .licao {
+    font-size: 0.97rem;
+    color: var(--tinta-media);
+    margin: 0;
+  }
+  .licao b { color: var(--vinho); font-weight: 600; }
+
+  .fala {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--tinta-media);
+    border-left: 2px solid var(--dourado);
+    padding: 0.2rem 0 0.2rem 1rem;
+    margin: 0;
+  }
+
+  /* ---------- Linha do tempo da fé ---------- */
+  .painel-fe {
+    background: var(--vinho-fundo);
+    color: var(--nude);
+    padding: 3rem 0;
+    margin-top: 3.5rem;
+  }
+  .painel-fe h2 { color: var(--marfim); }
+  .painel-fe p { color: var(--nude-med); }
+  .painel-fe .divisor { color: var(--dourado); }
+  .painel-fe .divisor::before,
+  .painel-fe .divisor::after { background: rgba(250, 238, 231, 0.2); }
+
+  .tempo {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin: 2rem 0 1.5rem;
+    list-style: none;
+    padding: 0;
+  }
+  .faixa { display: flex; flex-direction: column; gap: 0.4rem; }
+  .faixa-cabeca {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+  .faixa-nome { color: var(--marfim); font-weight: 500; }
+  .faixa-dias {
+    font-variant-numeric: tabular-nums;
+    color: var(--dourado);
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    white-space: nowrap;
+  }
+  .trilho {
+    height: 10px;
+    background: rgba(250, 238, 231, 0.12);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .barra {
+    height: 100%;
+    background: var(--dourado);
+    width: var(--w);
+    transform-origin: left center;
+  }
+  .barra.recente { background: var(--nude-med); }
+  .faixa-nota {
+    font-size: 0.85rem;
+    color: var(--taupe);
+    margin: 0;
+  }
+  .legenda-tempo {
+    display: flex;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--taupe);
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(250, 238, 231, 0.18);
+  }
+  .chave {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .chave::before {
+    content: "";
+    width: 1.6rem;
+    height: 6px;
+    background: var(--dourado);
+  }
+  .chave.nova::before { background: var(--nude-med); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .barra {
+      animation: cresce 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+    @keyframes cresce {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+  }
+
+  /* ---------- Ações ---------- */
+  .acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+  .acao {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.3rem 1rem;
+    align-items: start;
+  }
+  .acao svg { margin-top: 0.35rem; }
+  .acao h3 { grid-column: 2; }
+  .acao p {
+    grid-column: 2;
+    margin: 0.25rem 0 0;
+    color: var(--tinta-media);
+    font-size: 0.97rem;
+  }
+
+  /* ---------- Notas / rodapé ---------- */
+  .notas {
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 2px;
+    padding: 1.5rem 1.4rem;
+    font-size: 0.9rem;
+    color: var(--tinta-media);
+  }
+  .notas h2 {
+    font-size: 1.05rem;
+    color: var(--tinta);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--sans);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .notas ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .notas li::marker { color: var(--taupe); }
+
+  .assinatura {
+    margin-top: 3rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--linha);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .assinatura p {
+    font-family: var(--serif);
+    color: var(--tinta-fraca);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+  .assinatura .marca-nome-final {
+    font-family: var(--serif);
+    color: var(--cobre);
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- Provas: links diretos ---------- */
+  .provas {
+    list-style: none;
+    padding: 0;
+    margin: 1.6rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .prova {
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-left: 3px solid var(--dourado);
+    border-radius: 2px;
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .prova-cabeca {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .prova-marca {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--vinho);
+  }
+  .prova-idade {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--tinta-fraca);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .prova-texto {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--tinta-media);
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.5;
+  }
+  .prova-porque {
+    font-size: 0.87rem;
+    color: var(--tinta-fraca);
+    margin: 0;
+  }
+  .prova a {
+    align-self: flex-start;
+    font-size: 0.83rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--vinho);
+    text-decoration: none;
+    border-bottom: 1px solid var(--taupe);
+    padding-bottom: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .prova a:hover { color: var(--cobre); border-bottom-color: var(--dourado); }
+
+  .grupo-provas {
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--tinta-fraca);
+    margin: 2.2rem 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .grupo-provas:first-of-type { margin-top: 1.6rem; }
+  .grupo-provas::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--linha);
+  }
+
+  a { color: var(--vinho); text-underline-offset: 3px; }
+  a:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--dourado);
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 720px) {
+    .pagina { font-size: 18px; }
+    .marca { padding: 1.8rem 1.9rem; }
+  }
+</style>
+
+<div class="pagina">
+
+  <header class="capa">
+    <div class="env">
+      <svg class="estrela" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/>
+      </svg>
+      <span class="selo">Radar de concorrentes</span>
+      <h1>Quem está ganhando o jogo</h1>
+      <p class="linha-fina">
+        O que 20 marcas de joias e semijoias fizeram nas últimas sete semanas — e o
+        que isso diz sobre a hora de entrar.
+      </p>
+      <div class="ficha">
+        <span><b>7 jun</b> a <b>25 jul</b> de 2026</span>
+        <span><b>20</b> marcas</span>
+        <span><b>34</b> leituras diárias</span>
+        <span>Dados públicos</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="env">
+      <p class="abertura">
+        Duas coisas aconteceram nessas sete semanas. A <em>Magnífica</em> disparou —
+        ganhou 18 mil seguidores e virou a máquina de vendas mais afiada da lista.
+        E a <em>fé deixou de ser um espaço vazio</em>: quatro concorrentes já estão
+        pagando anúncio para vender joia religiosa, e três delas entraram nas
+        últimas três semanas.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>As quatro que importam</h2>
+      <p>
+        São vinte marcas no radar, mas só quatro mudam alguma decisão sua. Duas
+        porque mostram o que funciona. Duas porque estão ocupando o seu lugar.
+      </p>
+
+      <ol class="lista-marcas">
+
+        <li class="marca">
+          <div class="marca-topo">
+            <span class="posicao" aria-hidden="true"></span>
+            <div class="marca-nome">
+              <h3>Magnífica</h3>
+              <span class="marca-porte">A melhor máquina · 150 mil seguidores</span>
+            </div>
+          </div>
+          <dl class="numeros">
+            <div class="num"><dt>Em 7 semanas</dt><dd class="sobe">+18.310</dd></div>
+            <div class="num"><dt>Por dia</dt><dd class="sobe">+396</dd></div>
+            <div class="num"><dt>Posts/semana</dt><dd>18,7</dd></div>
+            <div class="num"><dt>Curtidas típicas</dt><dd>172</dd></div>
+          </dl>
+          <p class="licao">
+            Cresce quase 400 seguidores por dia, e esse ritmo <b>não caiu</b> em nenhum
+            momento do período. A receita é sempre a mesma: reels da peça no corpo da
+            modelo, evento de prova (o "Provador") para criar urgência, e a venda
+            fechada no WhatsApp. Nada de foto de produto parada.
+          </p>
+          <p class="licao">
+            <b>Copie o mecanismo, não o visual.</b> A estética dela é colorida e
+            exagerada — o oposto da Mariah. O que serve é a lógica: vídeo no corpo,
+            evento com hora marcada, conversa no WhatsApp.
+          </p>
+        </li>
+
+        <li class="marca">
+          <div class="marca-topo">
+            <span class="posicao" aria-hidden="true"></span>
+            <div class="marca-nome">
+              <h3>Divino K</h3>
+              <span class="marca-porte">Fé, paga e daqui · 51 mil seguidores</span>
+            </div>
+          </div>
+          <dl class="numeros">
+            <div class="num"><dt>Ritmo antes</dt><dd>+21/dia</dd></div>
+            <div class="num"><dt>Ritmo agora</dt><dd class="sobe">+60/dia</dd></div>
+            <div class="num"><dt>Posts/semana</dt><dd>1,3</dd></div>
+            <div class="num"><dt>Curtidas típicas</dt><dd>95</dd></div>
+          </dl>
+          <p class="licao">
+            Triplicou o ritmo de crescimento. E o detalhe que muda tudo:
+            <b>ela não publica nada desde 28 de junho</b>. Ganhou cerca de 1.500
+            seguidores em quase um mês sem postar — ou seja, esse crescimento é
+            comprado, não orgânico. O anúncio que está rodando é este:
+          </p>
+          <p class="fala">
+            "Expresse sua fé com elegância. Conheça a Linha Religiosa Divino K,
+            criada para acompanhar você em todos os momentos."
+          </p>
+          <p class="licao">
+            E ela é <b>de Recife</b> — o endereço no perfil é na Avenida 17 de Agosto,
+            em Casa Forte. É a concorrente mais próxima da Mariah em tese, em praça e
+            em público.
+          </p>
+        </li>
+
+        <li class="marca">
+          <div class="marca-topo">
+            <span class="posicao" aria-hidden="true"></span>
+            <div class="marca-nome">
+              <h3>Drusi</h3>
+              <span class="marca-porte">A prova de que converte · 42 mil seguidores</span>
+            </div>
+          </div>
+          <dl class="numeros">
+            <div class="num"><dt>Anúncios no ar</dt><dd>30</dd></div>
+            <div class="num"><dt>Falando de fé</dt><dd>9</dd></div>
+            <div class="num"><dt>O mais antigo</dt><dd class="sobe">146 dias</dd></div>
+            <div class="num"><dt>Por dia</dt><dd class="sobe">+30</dd></div>
+          </dl>
+          <p class="licao">
+            A Coleção Religiosa dela está sendo anunciada <b>há quase cinco meses
+            sem parar</b>. Ninguém paga anúncio por cinco meses se ele não vende —
+            é o sinal mais confiável que existe de que a peça converte.
+          </p>
+          <p class="fala">
+            "A fé que acompanha o seu estilo. Nossa Coleção Religiosa une o design
+            moderno à proteção que você busca no dia a dia."
+          </p>
+          <p class="licao">
+            Note o tom: ela fala em "blogueiras" e "banho premium". É fé vendida no
+            andar de baixo — <b>o lugar sofisticado continua livre</b>.
+          </p>
+        </li>
+
+        <li class="marca">
+          <div class="marca-topo">
+            <span class="posicao" aria-hidden="true"></span>
+            <div class="marca-nome">
+              <h3>Anna Prata</h3>
+              <span class="marca-porte">O sinal de alerta · 259 mil seguidores</span>
+            </div>
+          </div>
+          <dl class="numeros">
+            <div class="num"><dt>Anúncios no ar</dt><dd>46</dd></div>
+            <div class="num"><dt>De fé ou bênção</dt><dd>3</dd></div>
+            <div class="num"><dt>Há quanto tempo</dt><dd>19 dias</dd></div>
+            <div class="num"><dt>Por dia</dt><dd class="sobe">+133</dd></div>
+          </dl>
+          <p class="licao">
+            Uma marca de 259 mil seguidores começou a anunciar fé há menos de três
+            semanas. Quando as grandes entram, o assunto deixa de ser um nicho
+            esquecido e vira disputa.
+          </p>
+          <p class="fala">
+            "Não é sorte, é cuidado. Não é acaso, é direção. Você é abençoada porque
+            é amada, e escolhida porque tem um propósito único que só você tem."
+          </p>
+          <p class="licao">
+            É exatamente o tom que a Mariah quer ter. <b>Escrito por outra pessoa,
+            primeiro.</b>
+          </p>
+        </li>
+
+      </ol>
+    </section>
+
+  <section class="painel-fe">
+    <div class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>A janela da fé está fechando</h2>
+      <p>
+        Há dois meses, a leitura era que ninguém no mercado usava fé para vender —
+        que o espaço estava vago. Os anúncios pagos de hoje contam outra história.
+        Cada barra abaixo é há quantos dias a marca está pagando para anunciar
+        joia religiosa:
+      </p>
+
+      <ol class="tempo">
+        <li class="faixa">
+          <div class="faixa-cabeca">
+            <span class="faixa-nome">Drusi</span>
+            <span class="faixa-dias">146 dias</span>
+          </div>
+          <div class="trilho"><div class="barra" style="--w: 100%"></div></div>
+          <p class="faixa-nota">Abriu o caminho em março. Provou que vende.</p>
+        </li>
+        <li class="faixa">
+          <div class="faixa-cabeca">
+            <span class="faixa-nome">Anna Prata</span>
+            <span class="faixa-dias">19 dias</span>
+          </div>
+          <div class="trilho"><div class="barra recente" style="--w: 13%"></div></div>
+          <p class="faixa-nota">A gigante entrou. 259 mil seguidores.</p>
+        </li>
+        <li class="faixa">
+          <div class="faixa-cabeca">
+            <span class="faixa-nome">Divino K</span>
+            <span class="faixa-dias">6 dias</span>
+          </div>
+          <div class="trilho"><div class="barra recente" style="--w: 4.1%"></div></div>
+          <p class="faixa-nota">De Recife. Crescendo três vezes mais rápido.</p>
+        </li>
+        <li class="faixa">
+          <div class="faixa-cabeca">
+            <span class="faixa-nome">Joias N. Senhora</span>
+            <span class="faixa-dias">4 dias</span>
+          </div>
+          <div class="trilho"><div class="barra recente" style="--w: 2.7%"></div></div>
+          <p class="faixa-nota">Pingente de São Bento, anúncio novo.</p>
+        </li>
+      </ol>
+
+      <div class="legenda-tempo">
+        <span class="chave">Pioneira</span>
+        <span class="chave nova">Entrou nas últimas 3 semanas</span>
+      </div>
+
+      <p style="margin-top: 1.8rem">
+        Uma marca provou que fé vende, cinco meses atrás. Três outras chegaram em
+        vinte dias. <strong style="color: var(--marfim)">O que ainda não tem dono é
+        o jeito de falar</strong>: a Drusi vende fé como tendência de blogueira, a
+        Joias N. Senhora tem estética antiga, a Divino K é discreta demais para
+        cobrar caro. Fé com serenidade, para mulher madura, com preço de joia de
+        verdade — isso ninguém ocupou.
+      </p>
+    </div>
+  </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>Veja os anúncios com seus olhos</h2>
+      <p>
+        Todo anúncio pago fica público na Biblioteca de Anúncios da Meta — dá para
+        ver a peça, o vídeo e o texto de qualquer marca, de graça. Estes são os que
+        valem os seus dez minutos, e por quê.
+      </p>
+
+      <p class="grupo-provas">Os que provam que fé vende</p>
+      <ul class="provas">
+        <li class="prova">
+          <div class="prova-cabeca">
+            <span class="prova-marca">Drusi · Coleção Religiosa</span>
+            <span class="prova-idade">No ar há 146 dias</span>
+          </div>
+          <p class="prova-texto">
+            "A fé que acompanha o seu estilo. Nossa Coleção Religiosa une o design
+            moderno — queridinho das principais blogueiras — à proteção que você
+            busca no dia a dia."
+          </p>
+          <p class="prova-porque">
+            O mais importante da lista. Quase cinco meses no ar sem parar — ninguém
+            paga tanto tempo por um anúncio que não vende.
+          </p>
+          <a href="https://www.facebook.com/ads/library?id=848486248244489" target="_blank" rel="noopener noreferrer">Ver o anúncio →</a>
+        </li>
+
+        <li class="prova">
+          <div class="prova-cabeca">
+            <span class="prova-marca">Anna Prata · propósito</span>
+            <span class="prova-idade">No ar há 18 dias</span>
+          </div>
+          <p class="prova-texto">
+            "Não é sorte, é cuidado. Não é acaso, é direção. Você é abençoada porque
+            é amada, e escolhida porque tem um propósito único que só você tem."
+          </p>
+          <p class="prova-porque">
+            É o tom exato que a Mariah quer ter — escrito por uma marca de 259 mil
+            seguidores, há duas semanas. Leia com atenção: é a concorrência mais
+            direta que existe hoje.
+          </p>
+          <a href="https://www.facebook.com/ads/library?id=2034552213811244" target="_blank" rel="noopener noreferrer">Ver o anúncio →</a>
+        </li>
+
+        <li class="prova">
+          <div class="prova-cabeca">
+            <span class="prova-marca">Anna Prata · simbolismo religioso</span>
+            <span class="prova-idade">No ar há 19 dias</span>
+          </div>
+          <p class="prova-texto">
+            "Unindo a suavidade da fita de veludo à força do metal com textura e
+            simbolismo religioso. Uma peça sofisticada que traduz propósito, fé e
+            feminilidade com presença."
+          </p>
+          <p class="prova-porque">
+            Fé tratada como sofisticação, não como devoção óbvia. É a fronteira que
+            a Mariah precisa atravessar primeiro.
+          </p>
+          <a href="https://www.facebook.com/ads/library?id=1368592195151072" target="_blank" rel="noopener noreferrer">Ver o anúncio →</a>
+        </li>
+
+        <li class="prova">
+          <div class="prova-cabeca">
+            <span class="prova-marca">Divino K · Linha Religiosa</span>
+            <span class="prova-idade">No ar há 6 dias</span>
+          </div>
+          <p class="prova-texto">
+            "Expresse sua fé com elegância. Conheça a Linha Religiosa Divino K,
+            criada para acompanhar você em todos os momentos."
+          </p>
+          <p class="prova-porque">
+            A concorrente de Recife. É este anúncio que está trazendo 60 seguidores
+            por dia para ela — sem que precise publicar nada desde 28 de junho.
+          </p>
+          <a href="https://www.facebook.com/ads/library?id=891577106832227" target="_blank" rel="noopener noreferrer">Ver o anúncio →</a>
+        </li>
+
+        <li class="prova">
+          <div class="prova-cabeca">
+            <span class="prova-marca">Joias N. Senhora · São Bento</span>
+            <span class="prova-idade">No ar há 4 dias</span>
+          </div>
+          <p class="prova-texto">
+            "A fé nos fortalece todos os dias. E algumas joias carregam consigo uma
+            história de devoção que atravessa gerações."
+          </p>
+          <p class="prova-porque">
+            O anúncio mais novo dos quatro. Repare na estética: é o que acontece
+            quando fé vira loja devocional em vez de joalheria.
+          </p>
+          <a href="https://www.facebook.com/ads/library?id=1659080741828179" target="_blank" rel="noopener noreferrer">Ver o anúncio →</a>
+        </li>
+      </ul>
+
+      <p class="grupo-provas">O que ensina o tom</p>
+      <ul class="provas">
+        <li class="prova">
+          <div class="prova-cabeca">
+            <span class="prova-marca">Eme Joias · a frase</span>
+            <span class="prova-idade">No ar há 84 dias</span>
+          </div>
+          <p class="prova-texto">
+            "Não é sobre ter uma joia. É sobre encontrar algo que não estava
+            procurando."
+          </p>
+          <p class="prova-porque">
+            A melhor escrita da lista inteira. Sem preço, sem cupom, sem foto de
+            catálogo — e se paga há quase três meses.
+          </p>
+          <a href="https://www.facebook.com/ads/library?id=2206632050175798" target="_blank" rel="noopener noreferrer">Ver o anúncio →</a>
+        </li>
+      </ul>
+
+      <p class="grupo-provas">O que não fazer</p>
+      <ul class="provas">
+        <li class="prova">
+          <div class="prova-cabeca">
+            <span class="prova-marca">Misha by Mica · cupom WELCOME</span>
+            <span class="prova-idade">No ar há 176 dias</span>
+          </div>
+          <p class="prova-texto">
+            "Sua primeira experiência Misha com 15% de desconto! Aproveite agora,
+            use o cupom WELCOME, que é por TEMPO LIMITADO."
+          </p>
+          <p class="prova-porque">
+            "Tempo limitado" há quase seis meses. Ela sustenta 78 anúncios com
+            desconto na porta de entrada — e mesmo assim cresce menos de 1% no
+            período. É o caminho que trava o preço lá embaixo.
+          </p>
+          <a href="https://www.facebook.com/ads/library?id=1434909444969756" target="_blank" rel="noopener noreferrer">Ver o anúncio →</a>
+        </li>
+      </ul>
+
+      <p style="margin-top: 1.8rem; color: var(--tinta-media); font-size: 0.95rem">
+        <strong>Um contraste que vale notar:</strong> a Magnífica cresce quase 400
+        seguidores por dia com apenas <strong>2</strong> anúncios pagos no ar — o
+        crescimento dela é conquistado com conteúdo. A Divino K cresce 60 por dia
+        com 2 anúncios e <strong>nenhuma publicação</strong> — o dela é comprado.
+        São dois caminhos opostos, e os dois funcionam.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>Três coisas que os dados já autorizam</h2>
+
+      <ul class="acoes">
+        <li class="acao">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+          <h3>Vídeo no corpo, não foto de peça</h3>
+          <p>
+            É o único formato que aparece no topo de todas as marcas que crescem.
+            A Magnífica faz 18 por semana; a Divino K, quase nenhum — e a diferença
+            de curtidas entre elas é de quase o dobro.
+          </p>
+        </li>
+        <li class="acao">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+          <h3>Fé como alma, não como categoria</h3>
+          <p>
+            As quatro concorrentes tratam fé como uma linha de produto — "Coleção
+            Religiosa", "Linha Religiosa". Nenhuma faz da fé o jeito de ser da marca
+            inteira. É aí que a Mariah não teria concorrente.
+          </p>
+        </li>
+        <li class="acao">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+          <h3>Sem cupom, desde o primeiro dia</h3>
+          <p>
+            A Misha sustenta 78 anúncios com um cupom de 15% que roda há quase seis
+            meses — e cresce menos de 1% no período. Desconto compra volume e trava
+            o preço lá embaixo. Quem quer cobrar caro nunca começa com cupom.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>E duas que enganam</h2>
+      <p>
+        <strong>Aline Nascimento</strong> aparece em segundo lugar em crescimento
+        (+13,5%), mas publica 10 vezes por semana para uma média de <strong>6
+        curtidas</strong>. É audiência que não olha. Crescer assim não constrói marca.
+      </p>
+      <p>
+        <strong>Eme Joias</strong> tem o melhor tom de voz da lista — um anúncio no ar
+        há 84 dias com a frase <em>"não é sobre ter uma joia, é sobre encontrar algo
+        que não estava procurando"</em>. Mas o ritmo dela caiu de 31 para 11
+        seguidores por dia. Vale copiar a voz, não o plano.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="notas">
+        <h2>De onde vieram esses números</h2>
+        <ul>
+          <li>
+            Coleta automática diária dos perfis públicos do Instagram e da biblioteca
+            de anúncios da Meta — a mesma que qualquer pessoa pode consultar. Sem
+            login, sem dado privado.
+          </li>
+          <li>
+            Período de 7 de junho a 25 de julho de 2026, com 34 leituras válidas das
+            49 tentativas. Os dias sem leitura não entram na conta.
+          </li>
+          <li>
+            "Curtidas típicas" é a mediana, não a média — assim um post viral não
+            distorce o retrato da marca.
+          </li>
+          <li>
+            Anúncios são contados só quando estavam ativos na última verificação
+            (24 de julho). "Há quantos dias" é desde a data de início informada pela
+            própria Meta.
+          </li>
+          <li>
+            Para as marcas que anunciam muito, a leitura captura até 30 anúncios de
+            cada uma. Nesses casos, a contagem de anúncios de fé é um piso, não um
+            total — pode haver mais. Na Drusi a leitura pegou os 30 de 30, então
+            ali o número está completo.
+          </li>
+          <li>
+            Números de seguidores e textos de anúncio são exatamente como publicados
+            pelas marcas. Nada aqui é estimativa.
+          </li>
+        </ul>
+      </div>
+
+      <div class="assinatura">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true">
+          <path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/>
+        </svg>
+        <span class="marca-nome-final">Mariah</span>
+        <p>Radar de concorrentes · leitura de 25 de julho de 2026</p>
+      </div>
+    </section>
+
+  </main>
+</div>

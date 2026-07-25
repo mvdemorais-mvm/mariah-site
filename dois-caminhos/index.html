@@ -1,0 +1,614 @@
+<title>Dois caminhos — o que aprendemos com as duas maiores</title>
+
+<style>
+  :root {
+    --marfim:   #faeee7;
+    --nude:     #f6e0ce;
+    --nude-med: #edc3ad;
+    --taupe:    #c5a791;
+    --vinho:    #894d51;
+    --vinho-fundo: #5e3236;
+    --dourado:  #caa043;
+    --cobre:    #c8914f;
+
+    --tinta:    #2b1d1c;
+    --tinta-media: #6b5551;
+    --tinta-fraca: #93807c;
+
+    --fundo:    var(--marfim);
+    --superficie: #fff8f2;
+    --linha:    #e6cdbc;
+
+    --sobe:     #6f7f56;
+    --para:     #a8837a;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: "Yu Gothic UI", "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --medida: 66ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fundo: #191111; --superficie: #221818; --linha: #3d2c2a;
+      --tinta: #f6e0ce; --tinta-media: #c3a79e; --tinta-fraca: #92786f;
+      --vinho: #cf8891; --vinho-fundo: #2e1c1e; --dourado: #dcb763;
+      --cobre: #d9a463; --taupe: #8d7264;
+      --sobe: #9ab183; --para: #c09a90;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fundo: #191111; --superficie: #221818; --linha: #3d2c2a;
+    --tinta: #f6e0ce; --tinta-media: #c3a79e; --tinta-fraca: #92786f;
+    --vinho: #cf8891; --vinho-fundo: #2e1c1e; --dourado: #dcb763;
+    --cobre: #d9a463; --taupe: #8d7264;
+    --sobe: #9ab183; --para: #c09a90;
+  }
+  :root[data-theme="light"] {
+    --fundo: #faeee7; --superficie: #fff8f2; --linha: #e6cdbc;
+    --tinta: #2b1d1c; --tinta-media: #6b5551; --tinta-fraca: #93807c;
+    --vinho: #894d51; --vinho-fundo: #5e3236; --dourado: #caa043;
+    --cobre: #c8914f; --taupe: #c5a791;
+    --sobe: #6f7f56; --para: #a8837a;
+  }
+
+  * { box-sizing: border-box; }
+
+  .pagina {
+    background: var(--fundo); color: var(--tinta);
+    font-family: var(--sans); font-size: 17px; line-height: 1.65;
+    font-weight: 300; margin: 0; padding: 0 0 5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .env { max-width: var(--medida); margin-inline: auto; padding-inline: 1.5rem; }
+
+  /* Capa */
+  .capa {
+    background: var(--vinho-fundo); color: var(--nude);
+    padding: 3.5rem 0 3rem; border-bottom: 3px solid var(--dourado);
+  }
+  .capa .env { display: flex; flex-direction: column; gap: 1.1rem; }
+  .estrela { display: block; color: var(--dourado); }
+  .selo {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--dourado); font-weight: 400;
+  }
+  .capa h1 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2rem, 7vw, 3.1rem); line-height: 1.12;
+    letter-spacing: -0.01em; text-wrap: balance; margin: 0; color: var(--marfim);
+  }
+  .capa .linha-fina {
+    font-size: 1.05rem; color: var(--nude-med); margin: 0; max-width: 36rem;
+  }
+  .para-quem {
+    margin-top: 0.4rem; padding-top: 1.2rem;
+    border-top: 1px solid rgba(250,238,231,0.18);
+    font-size: 0.9rem; color: var(--taupe);
+  }
+
+  section { margin-top: 3.5rem; }
+  .divisor {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 0 0 1.8rem; color: var(--taupe);
+  }
+  .divisor::before, .divisor::after {
+    content: ""; flex: 1; height: 1px; background: var(--linha);
+  }
+
+  h2 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.5rem, 4.5vw, 2rem); line-height: 1.2;
+    color: var(--vinho); text-wrap: balance; margin: 0 0 0.9rem;
+  }
+  h3 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin: 0; color: var(--tinta); }
+  p { margin: 0 0 1.1rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; color: var(--tinta); }
+
+  .abertura {
+    font-family: var(--serif); font-size: clamp(1.15rem, 3.4vw, 1.4rem);
+    line-height: 1.55; color: var(--tinta);
+  }
+  .abertura em { font-style: normal; color: var(--vinho); font-weight: 500; }
+
+  /* Duelo */
+  .duelo {
+    display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 1.8rem 0 0;
+  }
+  .marca-cartao {
+    background: var(--superficie); border: 1px solid var(--linha);
+    border-top: 3px solid var(--dourado);
+    border-radius: 2px; padding: 1.4rem;
+  }
+  .marca-cartao.b { border-top-color: var(--taupe); }
+  .marca-cartao h3 { margin-bottom: 0.15rem; }
+  .marca-papel {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--tinta-fraca); display: block; margin-bottom: 0.9rem;
+  }
+  .marca-cartao dl {
+    margin: 0; display: grid; grid-template-columns: 1fr auto;
+    gap: 0.45rem 1rem; font-size: 0.94rem;
+  }
+  .marca-cartao dt { color: var(--tinta-media); }
+  .marca-cartao dd {
+    margin: 0; text-align: right; font-variant-numeric: tabular-nums;
+    font-family: var(--serif); font-size: 1.05rem;
+  }
+  .destaque { color: var(--sobe); font-weight: 600; }
+
+  /* Gráfico */
+  .grafico {
+    background: var(--superficie); border: 1px solid var(--linha);
+    border-radius: 2px; padding: 1.4rem 1rem 1rem; margin-top: 1.6rem;
+    overflow-x: auto;
+  }
+  .grafico h3 { font-family: var(--sans); font-size: 0.8rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--tinta-fraca); margin-bottom: 0.9rem; padding-inline: 0.4rem; }
+  .grafico svg { display: block; width: 100%; min-width: 340px; height: auto; }
+  .legenda {
+    display: flex; gap: 1.4rem; flex-wrap: wrap; margin-top: 0.8rem;
+    padding-inline: 0.4rem; font-size: 0.8rem; color: var(--tinta-media);
+  }
+  .chave { display: inline-flex; align-items: center; gap: 0.45rem; }
+  .chave::before { content: ""; width: 1.5rem; height: 3px; border-radius: 2px; background: var(--vinho); }
+  .chave.stone::before { background: var(--taupe); }
+
+  .eixo { stroke: var(--linha); stroke-width: 1; }
+  .rotulo { fill: var(--tinta-fraca); font-size: 9px; font-family: var(--sans); }
+  .linha-mag { fill: none; stroke: var(--vinho); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  .linha-sto { fill: none; stroke: var(--taupe); stroke-width: 2.5; stroke-dasharray: 5 4; stroke-linejoin: round; stroke-linecap: round; }
+  .ponto-mag { fill: var(--vinho); }
+  .ponto-sto { fill: var(--taupe); }
+
+  /* Comparação lado a lado */
+  .versus {
+    width: 100%; border-collapse: collapse; margin-top: 1.4rem; font-size: 0.94rem;
+  }
+  .versus th, .versus td {
+    padding: 0.7rem 0.6rem; text-align: left; border-bottom: 1px solid var(--linha);
+    vertical-align: top;
+  }
+  .versus thead th {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--tinta-fraca); font-weight: 500;
+  }
+  .versus td:first-child { color: var(--tinta-media); width: 30%; }
+  .versus .mag { color: var(--vinho); font-weight: 500; }
+
+  /* Recomendação */
+  .receita {
+    background: var(--vinho-fundo); color: var(--nude);
+    padding: 3rem 0; margin-top: 3.5rem;
+  }
+  .receita h2 { color: var(--marfim); }
+  .receita p { color: var(--nude-med); }
+  .receita .divisor { color: var(--dourado); }
+  .receita .divisor::before, .receita .divisor::after { background: rgba(250,238,231,0.2); }
+  .passos {
+    list-style: none; padding: 0; margin: 1.8rem 0 0;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    counter-reset: passo;
+  }
+  .passo {
+    display: grid; grid-template-columns: 1.8rem 1fr; gap: 0.2rem 1rem; align-items: start;
+  }
+  .passo::before {
+    counter-increment: passo; content: counter(passo);
+    font-family: var(--serif); font-size: 1.4rem; color: var(--dourado);
+    line-height: 1.3; grid-column: 1; grid-row: 1;
+  }
+  /* todos os filhos ficam na coluna 2: sem isso, um passo com dois parágrafos
+     joga o segundo na coluna do número e espreme o texto todo. */
+  .passo h3, .passo p { grid-column: 2; }
+  .passo h3 { color: var(--marfim); font-size: 1.15rem; }
+  .passo p { margin: 0.25rem 0 0; font-size: 0.97rem; }
+
+  /* Notas */
+  .notas {
+    background: var(--superficie); border: 1px solid var(--linha);
+    border-radius: 2px; padding: 1.5rem 1.4rem; font-size: 0.9rem; color: var(--tinta-media);
+  }
+  .notas h2 {
+    font-size: 1rem; color: var(--tinta); letter-spacing: 0.08em; text-transform: uppercase;
+    font-family: var(--sans); font-weight: 500; margin-bottom: 0.8rem;
+  }
+  .notas ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .notas li::marker { color: var(--taupe); }
+
+  .assinatura {
+    margin-top: 3rem; padding-top: 1.8rem; border-top: 1px solid var(--linha);
+    text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.7rem;
+  }
+  .assinatura p { font-family: var(--serif); color: var(--tinta-fraca); font-size: 0.92rem; margin: 0; }
+  .assinatura .nome { font-family: var(--serif); color: var(--cobre); font-size: 1.3rem; letter-spacing: 0.04em; }
+
+  a:focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; }
+
+  @media (min-width: 720px) {
+    .pagina { font-size: 18px; }
+    .duelo { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+
+<div class="pagina">
+
+  <header class="capa">
+    <div class="env">
+      <svg class="estrela" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/>
+      </svg>
+      <span class="selo">Estudo de concorrentes</span>
+      <h1>Dois caminhos</h1>
+      <p class="linha-fina">
+        Estudamos a fundo as duas maiores marcas do nosso mercado. Elas vendem a mesma coisa
+        de maneiras opostas — e uma delas mostra um caminho que dá para começar agora, do
+        celular, sem loja e sem verba de anúncio.
+      </p>
+      <p class="para-quem">
+        Para a Munique · 25 de julho de 2026 · baseado em 1.346 publicações analisadas
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="env">
+      <p class="abertura">
+        A <em>Magnífica</em> tem 150 mil seguidores e vende por WhatsApp, sem loja e quase sem
+        anúncio. A <em>It Stone</em> tem 423 mil, loja própria e 55 anúncios no ar.
+        A Magnífica é bem menor — e mesmo assim cresce <em>três vezes mais rápido</em>.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>As duas, lado a lado</h2>
+
+      <div class="duelo">
+        <div class="marca-cartao">
+          <h3>Magnífica</h3>
+          <span class="marca-papel">Vende por WhatsApp · sem loja</span>
+          <dl>
+            <dt>Seguidores</dt><dd>150.277</dd>
+            <dt>Cresce por dia</dt><dd class="destaque">+426</dd>
+            <dt>Curtidas por post</dt><dd class="destaque">209</dd>
+            <dt>Anúncios no ar</dt><dd>2</dd>
+          </dl>
+        </div>
+        <div class="marca-cartao b">
+          <h3>It Stone</h3>
+          <span class="marca-papel">Loja própria · mídia paga</span>
+          <dl>
+            <dt>Seguidores</dt><dd>423.780</dd>
+            <dt>Cresce por dia</dt><dd>+142</dd>
+            <dt>Curtidas por post</dt><dd>74</dd>
+            <dt>Anúncios no ar</dt><dd>55</dd>
+          </dl>
+        </div>
+      </div>
+
+      <p style="margin-top:1.6rem">
+        A It Stone é quase três vezes maior, gasta muito mais com anúncio — e cresce um terço
+        do que a Magnífica cresce. Cada post da Magnífica recebe quase <strong>três vezes mais
+        curtidas</strong>, mesmo ela tendo bem menos gente olhando.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>A descoberta principal: vídeo</h2>
+      <p>
+        Nos últimos nove meses, as duas fizeram escolhas contrárias. A Magnífica passou a
+        publicar <strong>muito mais vídeo</strong>. A It Stone foi para o outro lado e
+        publicou <strong>cada vez menos</strong>. Olhe o que aconteceu com cada uma.
+      </p>
+
+      <div class="grafico">
+        <h3>Quanto do que elas publicam é vídeo</h3>
+        <svg viewBox="0 0 400 200" role="img" aria-label="Gráfico: a Magnífica aumentou o uso de vídeo de 63% para 74%, chegando a 85% em maio; a It Stone reduziu de 67% para 33%, com mínima de 8% em junho.">
+          <line class="eixo" x1="30" y1="180" x2="380" y2="180"/>
+          <line class="eixo" x1="30" y1="30" x2="30" y2="180"/>
+          <text class="rotulo" x="4" y="34">100%</text>
+          <text class="rotulo" x="12" y="108">50%</text>
+          <text class="rotulo" x="20" y="183">0</text>
+          <polyline class="linha-mag" points="30,85.5 72,96 114,93 156,93 198,66 240,55.5 282,52.5 324,55.5 366,69"/>
+          <polyline class="linha-sto" points="30,79.5 72,109.5 114,102 156,115.5 198,99 240,120 282,124.5 324,168 366,130.5"/>
+          <circle class="ponto-mag" cx="282" cy="52.5" r="3.5"/>
+          <circle class="ponto-sto" cx="324" cy="168" r="3.5"/>
+          <text class="rotulo" x="252" y="45">85%</text>
+          <text class="rotulo" x="308" y="182">8%</text>
+          <text class="rotulo" x="20" y="196">nov</text>
+          <text class="rotulo" x="146" y="196">fev</text>
+          <text class="rotulo" x="272" y="196">mai</text>
+          <text class="rotulo" x="356" y="196">jul</text>
+        </svg>
+        <div class="legenda">
+          <span class="chave">Magnífica</span>
+          <span class="chave stone">It Stone</span>
+        </div>
+      </div>
+
+      <div class="grafico">
+        <h3>Curtidas e comentários por publicação</h3>
+        <svg viewBox="0 0 400 200" role="img" aria-label="Gráfico: o engajamento da Magnífica saltou de cerca de 70 para 365 a partir de março; o da It Stone ficou parado entre 66 e 136 no mesmo período.">
+          <line class="eixo" x1="30" y1="180" x2="380" y2="180"/>
+          <line class="eixo" x1="30" y1="30" x2="30" y2="180"/>
+          <text class="rotulo" x="10" y="34">400</text>
+          <text class="rotulo" x="10" y="108">200</text>
+          <text class="rotulo" x="20" y="183">0</text>
+          <polyline class="linha-mag" points="30,154.5 72,150.7 114,149.2 156,144.7 198,118.5 240,43.1 282,81.7 324,71.6 366,94.5"/>
+          <polyline class="linha-sto" points="30,155.2 72,142.9 114,153 156,142.5 198,147.7 240,129 282,139.5 324,149.2 366,148.9"/>
+          <circle class="ponto-mag" cx="240" cy="43.1" r="3.5"/>
+          <text class="rotulo" x="228" y="36">365</text>
+          <text class="rotulo" x="372" y="152">83</text>
+          <text class="rotulo" x="20" y="196">nov</text>
+          <text class="rotulo" x="146" y="196">fev</text>
+          <text class="rotulo" x="272" y="196">mai</text>
+          <text class="rotulo" x="356" y="196">jul</text>
+        </svg>
+        <div class="legenda">
+          <span class="chave">Magnífica</span>
+          <span class="chave stone">It Stone</span>
+        </div>
+      </div>
+
+      <p style="margin-top:1.6rem">
+        <strong>A Magnífica subiu o vídeo e as curtidas triplicaram.</strong> A It Stone
+        desceu o vídeo e ficou parada no mesmo lugar por nove meses.
+      </p>
+      <p>
+        Duas marcas do mesmo mercado, no mesmo período, fazendo o contrário uma da outra — e
+        cada uma colhendo o resultado da própria escolha. É a evidência mais forte que
+        encontramos em todo o estudo.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>Como cada uma vende</h2>
+
+      <table class="versus">
+        <thead>
+          <tr><th></th><th class="mag">Magnífica</th><th>It Stone</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>O evento</td>
+            <td class="mag">"Provador Luxo", <strong>todo sábado às 14h</strong>, nos stories</td>
+            <td>"Super Live", algumas vezes por trimestre, de dois dias</td>
+          </tr>
+          <tr>
+            <td>Como avisa</td>
+            <td class="mag">2 ou 3 publicações entre quinta e sábado, cada uma mostrando uma peça</td>
+            <td>Campanha de anúncios pagos com semanas de antecedência</td>
+          </tr>
+          <tr>
+            <td>Preço</td>
+            <td class="mag"><strong>Nunca aparece</strong></td>
+            <td>Desconto anunciado: "5% extra", "compras a partir de R$…"</td>
+          </tr>
+          <tr>
+            <td>Onde fecha</td>
+            <td class="mag"><strong>WhatsApp</strong></td>
+            <td>Site próprio</td>
+          </tr>
+          <tr>
+            <td>Precisa de</td>
+            <td class="mag">Celular, peças e constância</td>
+            <td>Loja virtual, verba de anúncio todo mês e margem para descontar</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:1.6rem">
+        O caminho da Magnífica é o nosso porque <strong>ele depende de constância, não de
+        orçamento.</strong> O da It Stone precisa de dinheiro de anúncio entrando todo mês
+        para alimentar a loja — ela mantém 55 anúncios no ar — e de margem para dar desconto.
+      </p>
+      <p>
+        E tem uma coisa que costuma assustar e não deveria: a Magnífica publica muito, quase
+        três vezes por dia — mas <strong>o Provador dela só precisa de duas ou três
+        publicações por semana</strong>. O resto do volume serve para alcançar gente nova. O
+        mecanismo de venda em si cabe em três posts.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>E a nossa loja, que já está pronta?</h2>
+      <p>
+        A loja da Mariah está estruturada e pode entrar no ar em poucos dias — com os
+        produtos já cadastrados, a Coleção Fé separada e a identidade aplicada. Isso é uma
+        vantagem real, e não muda a recomendação: <strong>muda o papel da loja.</strong>
+      </p>
+      <p>
+        A Magnífica <strong>não tem loja</strong> e cresce mais que todo mundo. Ou seja: o que
+        move o negócio não é a loja, é o encontro semanal e o conteúdo. Loja sem gente
+        chegando é uma sala bonita e vazia — a It Stone precisa de 55 anúncios pagos por mês
+        justamente para encher a dela.
+      </p>
+      <p>
+        Então a divisão fica assim: <strong>o encontro semanal é o motor, e a loja é o
+        caixa.</strong> Quem quiser conversar, compra pelo WhatsApp, como na Magnífica. Quem
+        preferir não falar com ninguém, compra direto no site — e aí a Mariah já sai na frente
+        dela, porque atende os dois tipos de cliente desde o primeiro dia.
+      </p>
+      <p>
+        O que <em>não</em> convém é inverter: montar o lançamento em cima de levar tráfego
+        para a loja. Esse é o modelo da It Stone, e ele custa dinheiro de anúncio todo mês.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>Mas o jeito de escrever é da outra</h2>
+      <p>
+        Aqui a recomendação se inverte. A Magnífica escreve legendas curtíssimas, de catálogo:
+      </p>
+      <p style="font-family:var(--serif); font-style:italic; color:var(--tinta-media); border-left:2px solid var(--dourado); padding:0.2rem 0 0.2rem 1rem; margin:0 0 1.2rem">
+        "Pingente Ana Lara em esmeralda com ródio branco! Versatilidade e beleza!"
+      </p>
+      <p>
+        Já a It Stone escreve sobre <strong>significado</strong> — e é onde ela ganha de
+        longe. O post de maior sucesso do estudo inteiro é dela:
+      </p>
+      <p style="font-family:var(--serif); font-style:italic; color:var(--tinta-media); border-left:2px solid var(--dourado); padding:0.2rem 0 0.2rem 1rem; margin:0 0 1.2rem">
+        "Tem joias que seguem a moda. E tem joias que definem o tempo. O ponto de luz existe
+        há décadas…" — <strong>220 mil visualizações</strong>
+      </p>
+      <p>
+        Ela conta a história do anel solitário, a tradição da trilogia, fala de Zendaya, faz
+        pergunta para quem lê. Não é vitrine: é conversa sobre o sentido da joia.
+      </p>
+      <p>
+        <strong>Esse é exatamente o nosso lugar.</strong> A Mariah não vai vender "peça em
+        pedra tal" — vai vender joia com fé e propósito. O jeito da It Stone de escrever
+        combina com isso; o catálogo da Magnífica, não.
+      </p>
+      <p>
+        E há uma coincidência que vale ouro: <strong>o post de 220 mil visualizações da It
+        Stone é sobre ponto de luz</strong> — e a Mariah já tem o Colar Ponto de Luz
+        cadastrado na loja, com significado escrito. A peça que rendeu o maior alcance do
+        estudo inteiro já está no nosso catálogo. O conteúdo praticamente se escreve sozinho.
+      </p>
+    </section>
+
+  <section class="receita">
+    <div class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>A receita, juntando as duas</h2>
+      <p>
+        Pegar o <strong style="color:var(--marfim)">mecanismo da Magnífica</strong> e o
+        <strong style="color:var(--marfim)">jeito de falar da It Stone</strong>.
+      </p>
+
+      <ol class="passos">
+        <li class="passo">
+          <h3>Um encontro por semana, com dia e hora fixos</h3>
+          <p>
+            A Magnífica faz sábado às 14h, há mais de um ano, sem falhar. O dia importa menos
+            que a constância — as clientes precisam saber quando esperar.
+          </p>
+        </li>
+        <li class="passo">
+          <h3>Duas ou três peças anunciadas antes, em vídeo</h3>
+          <p>
+            Uma na quinta, uma ou duas na sexta. Vídeo curto da peça sendo usada, gravado no
+            celular, com luz natural. Sem estúdio, sem produção.
+          </p>
+        </li>
+        <li class="passo">
+          <h3>Cada peça com nome próprio</h3>
+          <p>
+            "Conjunto Vértice", "Pingente Ana Lara". O nome permite pedir pelo nome no
+            WhatsApp e permite dizer "voltou" quando a peça for reposta.
+          </p>
+        </li>
+        <li class="passo">
+          <h3>Legenda que conta o sentido, não a ficha técnica</h3>
+          <p>
+            É aqui que seguimos a It Stone. O que a peça significa, para que momento serve,
+            que história carrega. A fé entra por aqui — como alma, não como categoria.
+          </p>
+        </li>
+        <li class="passo">
+          <h3>Você aparecendo</h3>
+          <p>
+            As duas marcas têm a dona como rosto — a Poly e a Aline. Na Magnífica, o único
+            post pessoal do ano, sobre o aniversário dela, entrou entre os dez melhores de
+            127. É o ativo mais forte e mais barato que temos.
+          </p>
+        </li>
+        <li class="passo">
+          <h3>Nunca cupom</h3>
+          <p>
+            A Magnífica nunca publica preço e cresce mais que todas. Uma terceira marca, a
+            Misha, mantém cupom de 15% há quase seis meses e cresce menos de 1%. Desconto na
+            largada trava o preço para sempre.
+          </p>
+          <p style="color:var(--taupe); font-size:0.92rem">
+            Vale rever, com calma, o "10% OFF no Pix" previsto no banner da loja. Desconto por
+            forma de pagamento é comum e não é a mesma coisa que cupom promocional — mas
+            aparece na porta de entrada, que é justamente onde o preço se ancora.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>O que nenhuma das duas faz</h2>
+      <p>
+        <strong>Fé.</strong> A It Stone não menciona uma única vez em 99 publicações e 28
+        anúncios. A Magnífica, uma vez em 127. As duas maiores marcas do mercado, com todo o
+        dinheiro que têm, não tocam no assunto.
+      </p>
+      <p>
+        Esse é o nosso espaço — com uma ressalva honesta que precisa ser dita: <strong>espaço
+        vazio não é prova de que vende.</strong> Pode ser oportunidade que ninguém viu, ou
+        pode ser que já tenham testado e desistido. Por isso a sugestão é começar testando fé
+        de leve, por algumas semanas, antes de construir a marca inteira em cima disso.
+      </p>
+      <p>
+        E o relógio está andando: quatro concorrentes começaram a anunciar peças de fé, três
+        delas nas últimas três semanas.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="notas">
+        <h2>Como chegamos nesses números</h2>
+        <ul>
+          <li>
+            Foram analisadas <strong>1.346 publicações</strong> — 996 da Magnífica (junho de
+            2025 a julho de 2026) e 350 da It Stone (novembro de 2025 a julho de 2026).
+          </li>
+          <li>
+            Tudo vem de informação pública do Instagram e da biblioteca de anúncios da Meta,
+            que qualquer pessoa pode consultar. Sem login, sem dado privado.
+          </li>
+          <li>
+            "Curtidas por publicação" é a mediana, não a média — assim um post que viraliza
+            não distorce o retrato.
+          </li>
+          <li>
+            Não conseguimos ver o que acontece dentro dos stories da Magnífica nem das lives
+            da It Stone, porque exigem login. Vemos a chamada, não o evento.
+          </li>
+          <li>
+            Também não dá para saber quanto elas gastam com anúncio: a Meta só divulga valor
+            de anúncio político.
+          </li>
+          <li>
+            Nenhuma imagem das concorrentes foi copiada — só descrevemos o que vimos.
+          </li>
+        </ul>
+      </div>
+
+      <div class="assinatura">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true">
+          <path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/>
+        </svg>
+        <span class="nome">Mariah</span>
+        <p>Joias, Semijoias &amp; Acessórios · estudo de 25 de julho de 2026</p>
+      </div>
+    </section>
+  </main>
+</div>
