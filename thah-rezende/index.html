@@ -1,0 +1,798 @@
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<title>Thah Rezende — a maior de todas, e o que ela ainda não fez</title>
+
+<style>
+  :root {
+    /* Paleta oficial Mariah (brand book @essenza.midia) */
+    --marfim:   #faeee7;
+    --nude:     #f6e0ce;
+    --nude-med: #edc3ad;
+    --taupe:    #c5a791;
+    --vinho:    #894d51;
+    --vinho-fundo: #5e3236;
+    --dourado:  #caa043;
+    --cobre:    #c8914f;
+
+    /* Neutros puxados para o vinho — nunca cinza puro */
+    --tinta:    #2b1d1c;
+    --tinta-media: #6b5551;
+    --tinta-fraca: #93807c;
+
+    --fundo:    var(--marfim);
+    --superficie: #fff8f2;
+    --linha:    #e6cdbc;
+
+    /* Semânticas — separadas do dourado de destaque */
+    --alta:     #6f7f56;
+    --queda:    #9c4a42;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: "Yu Gothic UI", "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+    --medida: 66ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fundo:    #191111;
+      --superficie: #221818;
+      --linha:    #3d2c2a;
+      --tinta:    #f6e0ce;
+      --tinta-media: #c3a79e;
+      --tinta-fraca: #92786f;
+      --vinho:    #cf8891;
+      --vinho-fundo: #2e1c1e;
+      --dourado:  #dcb763;
+      --cobre:    #d9a463;
+      --taupe:    #8d7264;
+      --alta:     #9ab183;
+      --queda:    #cf7c72;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fundo:    #191111;
+    --superficie: #221818;
+    --linha:    #3d2c2a;
+    --tinta:    #f6e0ce;
+    --tinta-media: #c3a79e;
+    --tinta-fraca: #92786f;
+    --vinho:    #cf8891;
+    --vinho-fundo: #2e1c1e;
+    --dourado:  #dcb763;
+    --cobre:    #d9a463;
+    --taupe:    #8d7264;
+    --alta:     #9ab183;
+    --queda:    #cf7c72;
+  }
+  :root[data-theme="light"] {
+    --fundo:    #faeee7;
+    --superficie: #fff8f2;
+    --linha:    #e6cdbc;
+    --tinta:    #2b1d1c;
+    --tinta-media: #6b5551;
+    --tinta-fraca: #93807c;
+    --vinho:    #894d51;
+    --vinho-fundo: #5e3236;
+    --dourado:  #caa043;
+    --cobre:    #c8914f;
+    --taupe:    #c5a791;
+    --alta:     #6f7f56;
+    --queda:    #9c4a42;
+  }
+
+  * { box-sizing: border-box; }
+
+  .pagina {
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    font-weight: 300;
+    padding: 0 0 5rem;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .env {
+    max-width: var(--medida);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  .env-larga {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  /* ---------- Cabeçalho ---------- */
+  .capa {
+    background: var(--vinho-fundo);
+    color: var(--nude);
+    padding: 3.5rem 0 3rem;
+    border-bottom: 3px solid var(--dourado);
+  }
+  .capa .env { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .estrela { display: block; color: var(--dourado); }
+
+  .selo {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--dourado);
+    font-weight: 400;
+  }
+  .capa h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 7vw, 3.1rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--marfim);
+  }
+  .capa .linha-fina {
+    font-size: 1.05rem;
+    color: var(--nude-med);
+    margin: 0;
+    max-width: 34rem;
+  }
+  .ficha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    margin-top: 0.6rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(250, 238, 231, 0.18);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    font-variant-numeric: tabular-nums;
+  }
+  .ficha b { color: var(--nude); font-weight: 500; }
+
+  /* ---------- Seções ---------- */
+  section { margin-top: 3.5rem; }
+
+  .divisor {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.8rem;
+    color: var(--taupe);
+  }
+  .divisor::before, .divisor::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--linha);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 4.5vw, 2rem);
+    line-height: 1.2;
+    color: var(--vinho);
+    text-wrap: balance;
+    margin: 0 0 0.9rem;
+  }
+  h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin: 0;
+    color: var(--tinta);
+  }
+  p { margin: 0 0 1.1rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; color: var(--tinta); }
+
+  .abertura {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 3.4vw, 1.4rem);
+    line-height: 1.55;
+    color: var(--tinta);
+  }
+  .abertura em {
+    font-style: normal;
+    color: var(--vinho);
+    font-weight: 500;
+  }
+
+  /* ---------- Cartões do ranking ---------- */
+  .lista-marcas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: posicao;
+  }
+  .marca {
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 2px;
+    padding: 1.5rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .marca-topo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .posicao {
+    counter-increment: posicao;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--dourado);
+    line-height: 1;
+    min-width: 1.4ch;
+  }
+  .posicao::before { content: counter(posicao); }
+  .marca-nome { flex: 1; min-width: 12ch; }
+  .marca-porte {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--tinta-fraca);
+    display: block;
+    margin-top: 0.15rem;
+  }
+
+  .numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 0.9rem 1.2rem;
+    padding: 0.9rem 0;
+    border-block: 1px solid var(--linha);
+  }
+  .num { display: flex; flex-direction: column; gap: 0.1rem; }
+  .num dt {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--tinta-fraca);
+  }
+  .num dd {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    color: var(--tinta);
+  }
+  .num dd.sobe { color: var(--alta); }
+  .num dd.desce { color: var(--queda); }
+
+  .licao {
+    font-size: 0.97rem;
+    color: var(--tinta-media);
+    margin: 0;
+  }
+  .licao b { color: var(--vinho); font-weight: 600; }
+
+  .fala {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--tinta-media);
+    border-left: 2px solid var(--dourado);
+    padding: 0.2rem 0 0.2rem 1rem;
+    margin: 0;
+  }
+
+  /* ---------- Linha do tempo da fé ---------- */
+  .painel-fe {
+    background: var(--vinho-fundo);
+    color: var(--nude);
+    padding: 3rem 0;
+    margin-top: 3.5rem;
+  }
+  .painel-fe h2 { color: var(--marfim); }
+  .painel-fe p { color: var(--nude-med); }
+  .painel-fe .divisor { color: var(--dourado); }
+  .painel-fe .divisor::before,
+  .painel-fe .divisor::after { background: rgba(250, 238, 231, 0.2); }
+
+  .tempo {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin: 2rem 0 1.5rem;
+    list-style: none;
+    padding: 0;
+  }
+  .faixa { display: flex; flex-direction: column; gap: 0.4rem; }
+  .faixa-cabeca {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+  .faixa-nome { color: var(--marfim); font-weight: 500; }
+  .faixa-dias {
+    font-variant-numeric: tabular-nums;
+    color: var(--dourado);
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    white-space: nowrap;
+  }
+  .trilho {
+    height: 10px;
+    background: rgba(250, 238, 231, 0.12);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .barra {
+    height: 100%;
+    background: var(--dourado);
+    width: var(--w);
+    transform-origin: left center;
+  }
+  .barra.recente { background: var(--nude-med); }
+  .faixa-nota {
+    font-size: 0.85rem;
+    color: var(--taupe);
+    margin: 0;
+  }
+  .legenda-tempo {
+    display: flex;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--taupe);
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(250, 238, 231, 0.18);
+  }
+  .chave {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .chave::before {
+    content: "";
+    width: 1.6rem;
+    height: 6px;
+    background: var(--dourado);
+  }
+  .chave.nova::before { background: var(--nude-med); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .barra {
+      animation: cresce 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+    @keyframes cresce {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+  }
+
+  /* ---------- Ações ---------- */
+  .acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+  .acao {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.3rem 1rem;
+    align-items: start;
+  }
+  .acao svg { margin-top: 0.35rem; }
+  .acao h3 { grid-column: 2; }
+  .acao p {
+    grid-column: 2;
+    margin: 0.25rem 0 0;
+    color: var(--tinta-media);
+    font-size: 0.97rem;
+  }
+
+  /* ---------- Notas / rodapé ---------- */
+  .notas {
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 2px;
+    padding: 1.5rem 1.4rem;
+    font-size: 0.9rem;
+    color: var(--tinta-media);
+  }
+  .notas h2 {
+    font-size: 1.05rem;
+    color: var(--tinta);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--sans);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .notas ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .notas li::marker { color: var(--taupe); }
+
+  .assinatura {
+    margin-top: 3rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--linha);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .assinatura p {
+    font-family: var(--serif);
+    color: var(--tinta-fraca);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+  .assinatura .marca-nome-final {
+    font-family: var(--serif);
+    color: var(--cobre);
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- Provas: links diretos ---------- */
+  .provas {
+    list-style: none;
+    padding: 0;
+    margin: 1.6rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .prova {
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-left: 3px solid var(--dourado);
+    border-radius: 2px;
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .prova-cabeca {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .prova-marca {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--vinho);
+  }
+  .prova-idade {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--tinta-fraca);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .prova-texto {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--tinta-media);
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.5;
+  }
+  .prova-porque {
+    font-size: 0.87rem;
+    color: var(--tinta-fraca);
+    margin: 0;
+  }
+  .prova a {
+    align-self: flex-start;
+    font-size: 0.83rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--vinho);
+    text-decoration: none;
+    border-bottom: 1px solid var(--taupe);
+    padding-bottom: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .prova a:hover { color: var(--cobre); border-bottom-color: var(--dourado); }
+
+  .grupo-provas {
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--tinta-fraca);
+    margin: 2.2rem 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .grupo-provas:first-of-type { margin-top: 1.6rem; }
+  .grupo-provas::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--linha);
+  }
+
+  a { color: var(--vinho); text-underline-offset: 3px; }
+  a:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--dourado);
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 720px) {
+    .pagina { font-size: 18px; }
+    .marca { padding: 1.8rem 1.9rem; }
+  }
+</style>
+
+<div class="pagina">
+
+  <header class="capa">
+    <div class="env">
+      <svg class="estrela" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/>
+      </svg>
+      <span class="selo">Estudo de uma concorrente</span>
+      <h1>A maior de todas &mdash; e o que ela ainda não fez</h1>
+      <p class="linha-fina">
+        Thah Rezende tem 246 mil seguidores, vende exatamente o mesmo material que a
+        Mariah vai vender, e fala de Deus abertamente. Mas nunca juntou as duas coisas.
+      </p>
+      <div class="ficha">
+        <span><b>246.321</b> seguidores</span>
+        <span><b>53</b> publicações lidas</span>
+        <span>nov/2025 a jul/2026</span>
+        <span>Dados públicos</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="env">
+      <p class="abertura">
+        Ela é a <em>maior marca</em> de todo o nosso levantamento &mdash; maior que a
+        Magnífica, maior que a It Stone. Vende ouro 18k, prata 925 e moissanite, o
+        mesmo território da Mariah. E o achado que interessa não está no tamanho dela:
+        está no fato de que ela <em>fala de fé o tempo todo e nunca vendeu uma joia de
+        fé</em>.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>Quem ela é</h2>
+      <p>
+        Thalísia Rezende, conta verificada, 764 publicações. Vende ao vivo &mdash; o
+        modelo de "live shop", em que a venda acontece numa transmissão com hora
+        marcada. Em junho deste ano ela anunciou que passou também a ser
+        <strong>importadora e distribuidora</strong>, ou seja, vende para outras
+        lojistas, não só para a cliente final.
+      </p>
+      <dl class="numeros">
+        <div class="num"><dt>Seguidores</dt><dd>246.321</dd></div>
+        <div class="num"><dt>Publicações</dt><dd>764</dd></div>
+        <div class="num"><dt>Anúncios pagos</dt><dd>0</dd></div>
+        <div class="num"><dt>Peças de fé</dt><dd>0</dd></div>
+      </dl>
+      <p class="licao">
+        Na descrição do perfil ela lista o que vende:
+        <b>ouro 18k, semijoias, moissanite e prata 925</b>. É o mesmo material da
+        Mariah &mdash; sem uma palavra sobre fé, santo, cruz ou coleção religiosa.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>Ela não vive de anunciar live</h2>
+      <p>
+        Esse foi o resultado que mais nos surpreendeu. Uma marca que vende ao vivo
+        poderia passar o dia inteiro chamando para a próxima transmissão. Não é o que
+        acontece: <strong>só 3 de cada 10 publicações falam de live</strong>. As
+        outras sete são conteúdo de verdade.
+      </p>
+      <dl class="numeros">
+        <div class="num"><dt>Chamam para a live</dt><dd>30%</dd></div>
+        <div class="num"><dt>São outra coisa</dt><dd class="sobe">70%</dd></div>
+      </dl>
+      <p class="licao">
+        Esse "outra coisa" se divide em três: uma <b>série sobre a história do ouro</b>,
+        textos <b>pessoais e de fé</b>, e alguns anúncios da própria empresa. Quase
+        nunca é foto de peça com preço.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>A "Golden Hour" &mdash; a lição mais aproveitável</h2>
+      <p>
+        Ela criou uma série numerada, com episódios, contando a
+        <strong>história do ouro</strong>. Não é sobre a peça dela. É sobre o metal,
+        a civilização, o significado. Um episódio por vez, como capítulo de novela.
+      </p>
+      <p class="fala">
+        "Golden Hour | Episódio 2 &mdash; Os faraós não escolhiam o ouro apenas por sua
+        beleza. No Antigo Egito, o ouro era associado à grandiosidade, ao poder e à
+        conexão com o divino."
+      </p>
+      <p class="fala">
+        "O ouro atravessou impérios, religiões, idiomas e fronteiras. Enquanto o mundo
+        mudava, reis caíam, impérios surgiam e desapareciam, uma coisa permanecia: o
+        valor que a humanidade atribuía ao ouro."
+      </p>
+      <p class="licao">
+        <b>É exatamente o registro que a Mariah quer.</b> Conteúdo que dá significado
+        ao material antes de mostrar a peça &mdash; o oposto de vitrine. A diferença é
+        que o significado dela é <b>história e poder</b>; o da Mariah seria
+        <b>fé e propósito</b>. A fórmula é a mesma; o conteúdo, não.
+      </p>
+    </section>
+
+    <div class="painel-fe">
+      <div class="env">
+        <div class="divisor" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+        </div>
+        <h2>Ela fala de Deus. E mesmo assim não vende fé.</h2>
+        <p>
+          Quase 1 em cada 5 publicações dela (17%) tem linguagem cristã explícita
+          &mdash; não é "fé" como palavra bonita de virada de ano. É referência bíblica
+          com nome e sobrenome:
+        </p>
+        <p class="fala">
+          "A trajetória de <b>Ester</b>, narrada nas Escrituras, é a maior prova de que
+          <b>Deus</b> não coloca ninguém em um lugar sem um propósito específico e
+          estratégico."
+        </p>
+        <p class="fala">
+          "Não diminua o que <b>Deus</b> colocou dentro de você... Continue obedecendo
+          a Deus... chega um momento em que <b>o Senhor</b> muda tudo."
+        </p>
+        <p>
+          E aqui está o ponto que muda uma decisão sua: <strong>ela nunca transformou
+          isso em produto</strong>. Nenhuma cruz, nenhum santo, nenhuma medalha,
+          nenhuma "coleção fé". A fé está na voz dela, nunca na vitrine.
+        </p>
+        <p>
+          <strong>O espaço continua aberto</strong> &mdash; a maior marca do
+          levantamento fala de Deus todo mês e ainda não ocupou esse lugar. Mas leia
+          isso como relógio, não como conforto: quem já fala de fé para 246 mil pessoas
+          está a <em>uma decisão de distância</em> de lançar a coleção que faltava.
+        </p>
+      </div>
+    </div>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>Ela não paga anúncio nenhum</h2>
+      <p>
+        Consultamos a biblioteca de anúncios da Meta (a mesma que usamos com as outras
+        marcas) e o resultado foi <strong>zero anúncios no ar</strong>. Uma marca de
+        246 mil seguidores sem um único anúncio pago.
+      </p>
+      <p class="licao">
+        <b>Cuidado com a leitura fácil aqui.</b> É tentador concluir "então dá para
+        crescer sem gastar nada". A explicação mais provável é outra: ela virou
+        <b>distribuidora</b>, e quem vende para lojistas não precisa de anúncio para
+        consumidora final. Além disso, olhamos uma vez só &mdash; com a Magnífica, só
+        confiamos no número depois de 12 leituras ao longo de sete semanas.
+      </p>
+    </section>
+
+    <section class="env">
+      <div class="divisor" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+      </div>
+      <h2>O que a Mariah tira daqui</h2>
+      <ul class="acoes">
+        <li class="acao">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+          <h3>Série com episódios, não posts soltos</h3>
+          <p>
+            A "Golden Hour" funciona porque tem número, ordem e continuidade &mdash;
+            quem viu o episódio 1 espera o 2. A Mariah pode ter a dela contando a
+            história dos símbolos de fé, do significado das pedras, das ocasiões
+            (batismo, crisma, primeira comunhão).
+          </p>
+        </li>
+        <li class="acao">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+          <h3>Significado antes da peça</h3>
+          <p>
+            Sete em cada dez publicações dela não são vitrine. É a mesma direção que a
+            It Stone tomou (história da joia) e o oposto da Magnífica (catálogo com
+            nome). Para uma marca de fé e propósito, esse é o caminho natural.
+          </p>
+        </li>
+        <li class="acao">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+          <h3>Fé dita em voz alta vende presença, não peça</h3>
+          <p>
+            Ela prova que dá para falar de Deus numa conta comercial grande sem afastar
+            ninguém &mdash; e que isso sozinho não vira venda de joia religiosa. O que
+            falta, e que ninguém fez, é <b>a peça nascer da fé</b>, não o texto.
+          </p>
+        </li>
+        <li class="acao">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true"><path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/></svg>
+          <h3>Não dá para copiar a escala dela</h3>
+          <p>
+            246 mil seguidores, live shop e operação de importação são o resultado de
+            anos, não um plano de partida. O que se copia é o <b>formato do conteúdo</b>,
+            nunca o tamanho da operação.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="env">
+      <div class="notas">
+        <h2>O que não conseguimos ver</h2>
+        <ul>
+          <li>
+            <strong>Pedimos um ano, conseguimos oito meses.</strong> O Instagram não
+            entrega publicações mais antigas que isso para quem consulta de fora, sem
+            login. Faltam de julho a novembro de 2025, e não há como recuperar depois.
+          </li>
+          <li>
+            <strong>Não sabemos se ela está crescendo.</strong> Temos uma única leitura
+            de seguidores (246.321 em 27 de julho), não uma série. Não dá para dizer se
+            os 246 mil vieram devagar ao longo de anos ou de um salto recente.
+          </li>
+          <li>
+            <strong>Somos cegos à live dela.</strong> Vemos a chamada, não a
+            transmissão &mdash; a mesma limitação que temos com os stories da Magnífica.
+            Se ela fala de fé ao vivo, não temos como saber.
+          </li>
+          <li>
+            <strong>São 53 publicações.</strong> É pouco para afirmar padrão. Uma
+            publicação que viraliza mexe muito na média, e foi o que aconteceu: o post
+            mais engajado dela (um sorteio) tem o dobro do segundo colocado.
+          </li>
+          <li>
+            <strong>Falta checar o Google.</strong> Verificamos anúncios na Meta, mas a
+            central de transparência do Google ficou pendente por um problema técnico
+            nosso. Não é "ela não anuncia no Google" &mdash; é "ainda não olhamos".
+          </li>
+        </ul>
+      </div>
+
+      <div class="assinatura">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--dourado)" aria-hidden="true">
+          <path d="M12 0c.9 8 3.1 10.2 12 12-8.9 1.8-11.1 4-12 12-.9-8-3.1-10.2-12-12C8.9 10.2 11.1 8 12 0z"/>
+        </svg>
+        <span class="marca-nome-final">Mariah</span>
+        <p>Estudo de concorrente &middot; leitura de 27 de julho de 2026</p>
+      </div>
+    </section>
+
+  </main>
+</div>
